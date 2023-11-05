@@ -11,7 +11,7 @@ const config: Config = {
     screens: {
       ...screens,
       // prettier-ignore
-      'xs': "475px",
+      "xs": '475px',
     },
     colors: {
       ...colors,
