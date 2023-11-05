@@ -35,7 +35,7 @@ export default function Home() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
-      className="xs:bg-cover flex min-h-screen items-center justify-center bg-light  bg-contain p-4 text-dark"
+      className="flex min-h-screen items-center justify-center bg-light bg-cover p-4 text-dark"
     >
       <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2">
         <div className="flex flex-col justify-center gap-6">

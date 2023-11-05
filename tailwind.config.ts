@@ -9,9 +9,9 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      ...screens,
       // prettier-ignore
       "xs": '475px',
+      ...screens,
     },
     colors: {
       ...colors,
