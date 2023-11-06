@@ -24,7 +24,7 @@ export default function Home() {
           </h1>
           <p className="text-lg">
             Next time a LinkedIn stranger asks you for 30 minutes of your time,
-            point them to callmi.
+            point them to Callmi.
           </p>
           <ul className="flex flex-col gap-3">
             <li className="flex gap-2">

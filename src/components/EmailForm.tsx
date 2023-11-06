@@ -2,14 +2,24 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { AnimationProps, motion } from 'framer-motion'
-export default function EmailForm() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+import { subscribe } from '@/actions'
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(email)
-    setSubmitted(true)
+export default function EmailForm() {
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+
+  const clientAction = async (data: FormData) => {
+    const res = await subscribe(data)
+
+    console.log({ res })
+
+    if (res.status === 200) {
+      setSubmitted(true)
+    }
+
+    if (res.status === 400) {
+      setError(res.body.error!)
+    }
   }
 
   if (submitted)
@@ -35,30 +45,36 @@ export default function EmailForm() {
     )
 
   return (
-    <motion.form
-      variants={formVariants}
-      initial="hidden"
-      animate="visible"
-      className="flex flex-col gap-4"
-      onSubmit={handleSubmit}
-    >
-      <label htmlFor="email">Email:</label>
-      <input
-        className="border-dark rounded-3xl border p-4"
-        type="email"
-        placeholder="your@email.com"
-        required
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button
-        className="bg-primary text-light rounded-3xl border py-4"
-        type="submit"
+    <motion.div layout className="max-w-min">
+      <motion.form
+        layout
+        variants={formVariants}
+        initial="hidden"
+        animate="visible"
+        className="flex flex-col justify-center gap-2"
+        action={clientAction}
       >
-        Submit
-      </button>
-    </motion.form>
+        <label htmlFor="email">Email</label>
+        <input
+          className="border-dark rounded-3xl border p-4"
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+        />
+        <button
+          className="bg-primary text-light rounded-3xl border py-4"
+          type="submit"
+        >
+          Submit
+        </button>
+      </motion.form>
+      {error && (
+        <motion.small {...fadeInProps} className=" text-red-500">
+          {error}
+        </motion.small>
+      )}
+    </motion.div>
   )
 }
 
@@ -75,4 +91,10 @@ const logoVariants: AnimationProps['variants'] = {
     y: 0,
     transition: { type: 'spring', bounce: 0.55 },
   },
+}
+
+const fadeInProps = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { delay: 0.5 },
 }
