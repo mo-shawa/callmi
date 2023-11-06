@@ -1,13 +1,13 @@
 'use client'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { AnimationProps, motion } from 'framer-motion'
 import { subscribe } from '@/actions'
+import { SubmitButton } from './SubmitButton'
 
 export default function EmailForm() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
-
   const clientAction = async (data: FormData) => {
     const res = await subscribe(data)
 
@@ -56,18 +56,13 @@ export default function EmailForm() {
       >
         <label htmlFor="email">Email</label>
         <input
-          className="border-dark rounded-3xl border p-4"
+          className="rounded-3xl border border-dark p-4"
           type="email"
           name="email"
           placeholder="your@email.com"
           required
         />
-        <button
-          className="bg-primary text-light rounded-3xl border py-4"
-          type="submit"
-        >
-          Submit
-        </button>
+        <SubmitButton />
       </motion.form>
       {error && (
         <motion.small {...fadeInProps} className=" text-red-500">
