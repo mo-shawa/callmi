@@ -10,7 +10,7 @@ export default function Home() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
-      className="text-dark bg-light flex min-h-screen items-center justify-center bg-cover p-4"
+      className="text-dark flex min-h-screen items-center justify-center bg-stone-50 bg-cover p-4"
     >
       <div className="absolute left-1/2 top-0 flex -translate-x-1/2 items-center gap-2 p-4">
         <Image src="/logo.svg" alt="logo" height={64} width={64} />
@@ -41,7 +41,7 @@ export default function Home() {
             </li>
           </ul>
         </div>
-        <div className="flex justify-center rounded-3xl bg-white p-16 shadow">
+        <div className="flex justify-center rounded-3xl bg-white p-16 shadow-xl">
           <EmailForm />
         </div>
       </div>

@@ -13,14 +13,15 @@ const config: Config = {
       "xs": '475px',
       ...screens,
     },
-    colors: {
-      ...colors,
-      primary: '#fe494b',
-      secondary: '#3baf20',
-      accent: '#a1d873',
-      dark: '#0a311e',
-      light: '#fbfff9',
-      white: '#ffffff',
+    extend: {
+      colors: {
+        primary: '#fe494b',
+        secondary: '#3baf20',
+        accent: '#a1d873',
+        dark: '#0a311e',
+        light: '#fbfff9',
+        white: '#ffffff',
+      },
     },
   },
   plugins: [],
