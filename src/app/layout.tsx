@@ -6,7 +6,8 @@ import Navbar from '@/components/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Callmi',
+  title:
+    'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
   description:
     'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
   openGraph: {
