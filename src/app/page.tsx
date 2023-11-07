@@ -4,18 +4,7 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main
-      style={{
-        backgroundImage: "url('/blobs.jpg')",
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-      className="text-dark flex min-h-screen items-center justify-center bg-stone-50 bg-cover p-4"
-    >
-      <div className="absolute left-1/2 top-0 flex -translate-x-1/2 items-center gap-2 p-4">
-        <Image src="/logo.svg" alt="logo" height={64} width={64} />
-        <h1 className="text-2xl ">Callmi</h1>
-      </div>
+    <main className="flex h-full flex-1 flex-col items-center justify-center">
       <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2">
         <div className="flex max-w-md flex-col justify-center gap-6">
           <h1 className="max-w-sm text-4xl font-bold">
