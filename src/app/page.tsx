@@ -16,18 +16,11 @@ export default function Home() {
             point them to Callmi.
           </p>
           <ul className="flex flex-col gap-3">
-            <li className="flex gap-2">
-              <Image src="/check.svg" alt="check" height={16} width={16} />
-              Schedule meetings and get paid in one click.
-            </li>
-            <li className="flex gap-2">
-              <Image src="/check.svg" alt="check" height={16} width={16} />
+            <ListItem>Schedule meetings and get paid in one click.</ListItem>
+            <ListItem>
               Donate any % of the proceeds to a cause you care about.
-            </li>
-            <li className="flex gap-2">
-              <Image src="/check.svg" alt="check" height={16} width={16} />
-              Put an end to free “brain picking”!
-            </li>
+            </ListItem>
+            <ListItem>Put an end to free “brain picking”!</ListItem>
           </ul>
         </div>
         <div className="flex justify-center rounded-3xl bg-white p-16 shadow-xl">
@@ -35,5 +28,14 @@ export default function Home() {
         </div>
       </div>
     </main>
+  )
+}
+
+function ListItem({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex gap-2">
+      <Image src="/check.svg" alt="check" height={16} width={16} />
+      {children}
+    </li>
   )
 }

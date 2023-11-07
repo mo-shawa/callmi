@@ -11,8 +11,6 @@ export default function EmailForm() {
   const clientAction = async (data: FormData) => {
     const res = await subscribe(data)
 
-    console.log({ res })
-
     if (res.status === 200) {
       setSubmitted(true)
     }
@@ -37,7 +35,7 @@ export default function EmailForm() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-lg font-light"
+          className="text-center text-lg font-light"
         >
           Thanks for signing up!
         </motion.p>

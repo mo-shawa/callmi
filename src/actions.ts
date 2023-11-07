@@ -37,8 +37,6 @@ export async function subscribe(data: FormData) {
       throw new Error('Something went wrong with Google Sheets')
     }
 
-    console.log({ response })
-
     return {
       status: 200,
       body: { message: 'Success!' },
