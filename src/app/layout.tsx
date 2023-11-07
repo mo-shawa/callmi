@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
   openGraph: {
-    images: 'https://callmi.vercel.app/logo.png',
+    images: 'https://callmi.vercel.app/group.png',
   },
 }
 
