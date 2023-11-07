@@ -20,11 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div
-          style={{
-            backgroundImage: "url('/blobs.jpg')",
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
+          style={
+            {
+              // backgroundImage: "url('/blobs.jpg')",
+              // backgroundPosition: 'center',
+              // backgroundRepeat: 'no-repeat',
+            }
+          }
           className="flex min-h-screen flex-col bg-stone-50 bg-cover p-4 text-dark"
         >
           <Navbar></Navbar>
