@@ -6,9 +6,12 @@ import Navbar from '@/components/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Callmi ',
+  title: 'Callmi',
   description:
-    'Callmi - Ready to value your expertise? Start monetizing your knowledge today. Join callmi and turn your passion into profit.',
+    'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
+  openGraph: {
+    images: 'https://callmi.vercel.app/logo.png',
+  },
 }
 
 export default function RootLayout({
