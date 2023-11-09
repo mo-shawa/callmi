@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
-import { colors, screens } from 'tailwindcss/defaultTheme'
+import { screens } from 'tailwindcss/defaultTheme'
+import daisyUI from 'daisyui'
 
 const config: Config = {
   content: [
@@ -19,11 +20,15 @@ const config: Config = {
         secondary: '#3baf20',
         accent: '#a1d873',
         dark: '#0a311e',
-        light: '#fbfff9',
+        light: '#fff9f9',
         white: '#ffffff',
       },
     },
   },
-  plugins: [],
+  plugins: [daisyUI],
+  daisyui: {
+    base: false,
+    // styled: false,
+  },
 }
 export default config
