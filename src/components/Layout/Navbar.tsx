@@ -12,7 +12,7 @@ export default function Navbar() {
     >
       <Link href="/" id="nav-left" className="flex items-center">
         <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
-          <Image src="/logo.svg" alt="logo" height={64} width={64} />
+          <Image src="/svg/logo.svg" alt="logo" height={64} width={64} />
         </motion.div>
         <h1 className="text-2xl">Callmi</h1>
       </Link>

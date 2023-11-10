@@ -34,7 +34,7 @@ export default function Home() {
 function ListItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-2">
-      <Image src="/check.svg" alt="check" height={16} width={16} />
+      <Image src="/svg/check.svg" alt="check" height={16} width={16} />
       {children}
     </li>
   )

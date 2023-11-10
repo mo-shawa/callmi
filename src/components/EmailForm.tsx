@@ -29,7 +29,7 @@ export default function EmailForm() {
           animate="visible"
           className="flex flex-col items-center justify-center gap-4"
         >
-          <Image src="/logo.svg" alt="logo" height={96} width={96} />
+          <Image src="/svg/logo.svg" alt="logo" height={96} width={96} />
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}

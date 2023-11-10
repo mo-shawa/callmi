@@ -9,3 +9,10 @@ h1 {
 p {
   @apply text-lg leading-relaxed tracking-tight md:text-xl md:leading-relaxed;
 }
+
+@layer components {
+  .btn {
+    text-transform: none;
+    @apply text-light;
+  }
+}
