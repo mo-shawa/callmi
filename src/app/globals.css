@@ -13,6 +13,6 @@ p {
 @layer components {
   .btn {
     text-transform: none;
-    @apply text-light;
+    @apply rounded-3xl border border-black bg-black text-light;
   }
 }

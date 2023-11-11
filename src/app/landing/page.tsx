@@ -69,6 +69,7 @@ export default function LandingPage() {
           >
             {categories.map((category) => (
               <CategoryPill
+                key={category}
                 shuffleCategories={shuffleCategories}
                 category={category}
               />
@@ -91,7 +92,6 @@ function CategoryPill({ category, shuffleCategories }: CategoryPillProps) {
       layout
       layoutId={category}
       transition={{ type: 'spring', stiffness: 500, damping: 30, duration: 2 }}
-      key={category}
       className="flex h-12 select-none items-center justify-center rounded-3xl border-2 border-black bg-white px-4"
     >
       <div className="whitespace-nowrap text-lg font-semibold">{category}</div>

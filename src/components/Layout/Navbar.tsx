@@ -48,12 +48,29 @@ export default function Navbar() {
           <h1 className="text-2xl">Callmi</h1>
         </Link>
       </div>
-      <div className="hidden flex-none sm:block"></div>
-      <div className="block flex-none sm:hidden">
+      <ul id="desktop-menu" className="hidden grid-cols-2 gap-4 sm:grid">
+        <li>
+          <Link
+            href="/auth/signin"
+            className="btn col-span-1 w-full bg-white text-black"
+          >
+            Sign in
+          </Link>
+        </li>
+        <li>
+          <Link href="/auth/signin" className="btn col-span-1 w-full">
+            Sign up for free
+          </Link>
+        </li>
+      </ul>
+      <div id="mobile-menu" className="block flex-none sm:hidden">
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <label
+            tabIndex={0}
+            className="btn btn-circle border-none bg-transparent"
+          >
             <div className="rounded-full p-2">
-              <Bars3Icon className="h-6 w-6 text-black" />
+              <Bars3Icon className="h-7 w-7 text-black" />
             </div>
           </label>
           <ul
@@ -61,16 +78,15 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
+              <Link href="/auth/signin" className="justify-between">
+                Sign in
+                {/* <span className="badge">New</span> */}
+              </Link>
             </li>
             <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <Link href="/auth/signin" className="justify-between">
+                Sign up for free
+              </Link>
             </li>
           </ul>
         </div>
