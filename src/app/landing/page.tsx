@@ -1,34 +1,13 @@
 'use client'
 import HeroButton from '@/components/Button/HeroButton'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import Image from 'next/image'
-import useShuffleCategories from '@/hooks/useShuffleCategories'
+// import useShuffleCategories from '@/hooks/useShuffleCategories'
 import CategoryPill from '@/components/Landing/CategoryPill'
 import FeatureCard from '@/components/Landing/FeatureCard'
 import PricingCard from '@/components/Landing/Pricing/PricingCard'
-
-const categoryData = [
-  'DevOps',
-  'UX Design',
-  'Backend Development',
-  'Fundraising',
-  'Blockchain',
-
-  'Brand',
-  'SEO',
-  'Financial Analysis',
-  'Email Marketing',
-  'Performance Marketing',
-]
-
-const features = [
-  { text: 'Integrated payments', soon: false },
-  { text: 'Timezone support', soon: true },
-  { text: 'Flexible availability', soon: false },
-  { text: 'Calendar sync', soon: true },
-  { text: 'Integrated payments', soon: false },
-  { text: 'Automatic rescheduling', soon: true },
-]
+import { categoryData, featuresData, faqData } from '@/data/landing'
+import FaqItem from '@/components/Landing/FAQ'
 
 export default function LandingPage() {
   // const { categories } = useShuffleCategories(categoryData)
@@ -40,10 +19,7 @@ export default function LandingPage() {
         id="hero"
         className="flex min-h-screen flex-col items-center justify-center px-4 pb-40 text-center"
       >
-        <motion.div
-          layout
-          className="flex flex-col items-center justify-center gap-4"
-        >
+        <div className="flex flex-col items-center justify-center gap-4">
           <h1 className="max-w-2xl text-6xl font-bold">
             Schedule and bill your 1:1 calls in a blink 🔗
           </h1>
@@ -52,13 +28,13 @@ export default function LandingPage() {
             your expertise.
           </p>
           <HeroButton />
-        </motion.div>
+        </div>
         <div className="mt-8 flex max-w-5xl flex-wrap items-center justify-around gap-4 sm:w-full">
-          <motion.div className="flex  flex-wrap items-center justify-center gap-8">
+          <div className="flex  flex-wrap items-center justify-center gap-8">
             {categories.map((category) => (
               <CategoryPill key={category} category={category} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
       <section className="w-full rounded bg-slate-100 px-4 pt-12">
@@ -74,7 +50,7 @@ export default function LandingPage() {
             id="features"
             className="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3"
           >
-            {features.map(({ text, soon }, idx) => (
+            {featuresData.map(({ text, soon }, idx) => (
               <FeatureCard soon={soon} key={idx}>
                 {text}
               </FeatureCard>
@@ -85,7 +61,7 @@ export default function LandingPage() {
           id="pricing"
           className="mx-auto flex w-full max-w-7xl flex-col flex-wrap items-center justify-start gap-8 bg-white p-8 shadow-xl"
         >
-          <h1 className=" font-semibold">Zero up front costs</h1>
+          <h1 className="text-center font-semibold">Zero up front costs</h1>
           <div className="grid grid-cols-1 grid-rows-1 gap-8 sm:grid-cols-2">
             <div className="col-span-1 flex gap-4">
               <Image src="/svg/check.svg" alt="check" width={24} height={24} />
@@ -102,7 +78,7 @@ export default function LandingPage() {
           </p>
           <div
             id="pricing-cards"
-            className="flex w-full max-w-3xl flex-wrap justify-evenly gap-8"
+            className="flex w-full max-w-3xl flex-wrap justify-evenly gap-8 md:flex-nowrap"
           >
             <PricingCard
               planName="Starter"
@@ -129,6 +105,22 @@ export default function LandingPage() {
               ]}
             />
           </div>
+        </div>
+        <div
+          id="faq"
+          className="mx-auto flex w-full max-w-7xl flex-col flex-wrap items-center justify-start gap-8 bg-white p-8 shadow-xl"
+        >
+          <h1 className="text-center font-semibold">
+            Frequently Asked Questions
+          </h1>
+          {faqData.map(({ question, answer }, idx) => (
+            <FaqItem
+              key={idx}
+              question={question}
+              answer={answer}
+              isLast={idx === faqData.length - 1}
+            />
+          ))}
         </div>
       </section>
     </main>

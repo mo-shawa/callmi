@@ -10,6 +10,7 @@ type PricingCardProps = {
   cost: string
   subtitle: string
   features: Feature[]
+  border?: string
 }
 
 export default function PricingCar({
@@ -17,9 +18,12 @@ export default function PricingCar({
   cost,
   subtitle,
   features,
+  border,
 }: PricingCardProps) {
   return (
-    <div className="flex w-full flex-col gap-6 rounded-xl border-t p-8 pb-16 shadow-md">
+    <div
+      className={`flex w-full flex-col gap-6 rounded-xl border-t p-8 pb-16 shadow-md ${border}`}
+    >
       <h2 className="text-3xl font-extralight">{planName}</h2>
       <h3 className="text-2xl font-semibold">{cost}</h3>
       <p className="text-base font-light text-gray-500">{subtitle}</p>
@@ -50,11 +54,11 @@ function FeatureItem({ text, isReady, index }: FeatureItemProps) {
   return (
     <li className="flex items-center gap-2">
       <div
-        className={`h-4 w-4 rounded ${
+        className={`h-4 w-4 rounded p-0.5 ${
           index === 0 ? colorClasses.black : colorClasses.gray
         }`}
       >
-        <CheckIcon className="text-white" />
+        <CheckIcon className="stroke-[5] text-white" />
       </div>
       <span className={index === 0 ? 'text-black' : 'text-gray-400'}>
         {text}
