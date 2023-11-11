@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="flex h-24 w-full items-center justify-center border-t">
+    <footer className="flex h-24 w-full items-center justify-center justify-self-end border-t bg-white">
       <a
         className="flex items-center justify-center"
         href="https://callmi.vercel.app"

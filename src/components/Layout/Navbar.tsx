@@ -39,7 +39,7 @@ export default function Navbar() {
     //     {/* <div className="btn">hello</div> */}
     //   </div>
     // </nav>
-    <div className="navbar bg-base-100">
+    <div className="navbar fixed top-0 z-50 bg-white shadow">
       <div className="flex-1">
         <Link href="/" id="nav-left" className="flex items-center">
           <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
