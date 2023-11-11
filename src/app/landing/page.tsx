@@ -30,7 +30,8 @@ const features = [
 ]
 
 export default function LandingPage() {
-  const { categories } = useShuffleCategories(categoryData)
+  // const { categories } = useShuffleCategories(categoryData)
+  const categories = categoryData
 
   return (
     <main className="mt-20 flex flex-col items-center justify-center bg-white px-4 sm:mt-0">
