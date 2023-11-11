@@ -5,6 +5,7 @@ import Image from 'next/image'
 import useShuffleCategories from '@/hooks/useShuffleCategories'
 import CategoryPill from '@/components/Landing/CategoryPill'
 import FeatureCard from '@/components/Landing/FeatureCard'
+import PricingCard from '@/components/Landing/Pricing/PricingCard'
 
 const categoryData = [
   'DevOps',
@@ -61,7 +62,7 @@ export default function LandingPage() {
         </div>
       </section>
       <section className="w-full rounded bg-slate-100 px-4 pt-12">
-        <div className="mx-auto -mt-40 grid w-full max-w-7xl grid-cols-1 gap-8 rounded-t-3xl border-t bg-white px-8 pt-16 shadow md:grid-cols-2">
+        <div className="mx-auto -mt-40 grid w-full max-w-7xl grid-cols-1 gap-8 rounded-t-3xl border-t bg-white px-8 py-16 shadow-xl md:grid-cols-2">
           <Image
             src="/landing/booking.png"
             alt="booking UI"
@@ -78,6 +79,55 @@ export default function LandingPage() {
                 {text}
               </FeatureCard>
             ))}
+          </div>
+        </div>
+        <div
+          id="pricing"
+          className="mx-auto flex w-full max-w-7xl flex-col items-center justify-start gap-8 bg-white p-8 shadow-xl"
+        >
+          <h1 className=" font-semibold">Zero up front costs</h1>
+          <div className="grid grid-cols-2 grid-rows-1 gap-8">
+            <div className="col-span-1 flex gap-4">
+              <Image src="/svg/check.svg" alt="check" width={24} height={24} />
+              <p>No credit card required.</p>
+            </div>
+            <div className="col-span-1 flex gap-4">
+              <Image src="/svg/check.svg" alt="check" width={24} height={24} />
+              <p>No hidden costs.</p>
+            </div>
+          </div>
+          <p className="w-full max-w-4xl text-center text-gray-500">
+            We want to make money when you make money. Enjoy all that Callmi has
+            to offer, including scheduling and payments for free, forever.{' '}
+          </p>
+          <div
+            id="pricing-cards"
+            className=" flex w-full max-w-3xl justify-evenly gap-8"
+          >
+            <PricingCard
+              planName="Starter"
+              cost="Free, forever"
+              subtitle="For individuals getting started"
+              features={[
+                { text: 'We take 20% service free per call', isReady: true },
+                { text: 'Dedicated human support', isReady: true },
+                { text: 'Donate your fees to a cause', isReady: true },
+                { text: 'Calendar sync', isReady: false },
+              ]}
+            />
+            <PricingCard
+              planName="Professional"
+              cost="15 USD / month"
+              subtitle="For power users and growing teams"
+              features={[
+                { text: 'Only credit card and withdrawal fees', isReady: true },
+                { text: 'Dedicated human support', isReady: true },
+                { text: 'Donate your fees to a cause', isReady: true },
+                { text: 'Calendar sync', isReady: false },
+                { text: 'Paid courses', isReady: false },
+                { text: 'Digital products', isReady: false },
+              ]}
+            />
           </div>
         </div>
       </section>
