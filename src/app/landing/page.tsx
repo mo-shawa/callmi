@@ -1,5 +1,6 @@
 'use client'
 import HeroButton from '@/components/Button/HeroButton'
+import { ease } from '@/utils/framer'
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
@@ -25,7 +26,7 @@ export default function LandingPage() {
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
       shuffleCategories()
-    }, 2000)
+    }, 5000)
     return () => {
       clearTimeout(timeoutRef.current)
     }
@@ -46,27 +47,27 @@ export default function LandingPage() {
 
     timeoutRef.current = setTimeout(() => {
       shuffleCategories()
-    }, 2000)
+    }, 5000)
   }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <main className="flex flex-1 flex-col items-center justify-center px-4 text-center">
-        <h1 className="max-w-2xl text-6xl font-bold">
-          Schedule and bill your 1:1 calls in a blink 🔗
-        </h1>
-
-        <p className="mt-3 max-w-2xl text-2xl">
-          Your time is valuable. Callmi gives you the platform to get paid for
-          your expertise.
-        </p>
-
-        <HeroButton />
+      <main className="flex flex-col items-center justify-center text-center">
+        <motion.div
+          layout
+          className="flex flex-col items-center justify-center gap-4"
+        >
+          <h1 className="max-w-2xl text-6xl font-bold">
+            Schedule and bill your 1:1 calls in a blink 🔗
+          </h1>
+          <p className="mt-3 max-w-2xl text-2xl">
+            Your time is valuable. Callmi gives you the platform to get paid for
+            your expertise.
+          </p>
+          <HeroButton />
+        </motion.div>
         <div className="mt-8 flex max-w-5xl flex-wrap items-center justify-around gap-4 sm:w-full">
-          <motion.div
-            layoutRoot
-            className="flex flex-wrap items-center justify-center gap-8"
-          >
+          <motion.div className="flex flex-wrap items-center justify-center gap-8">
             {categories.map((category) => (
               <CategoryPill
                 key={category}
@@ -91,7 +92,9 @@ function CategoryPill({ category, shuffleCategories }: CategoryPillProps) {
     <motion.div
       layout
       layoutId={category}
-      transition={{ type: 'spring', stiffness: 500, damping: 30, duration: 2 }}
+      transition={{
+        layout: { ease, duration: 1 },
+      }}
       className="flex h-12 select-none items-center justify-center rounded-3xl border-2 border-black bg-white px-4"
     >
       <div className="whitespace-nowrap text-lg font-semibold">{category}</div>
