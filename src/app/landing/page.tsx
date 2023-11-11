@@ -1,22 +1,35 @@
 'use client'
 import HeroButton from '@/components/Button/HeroButton'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const categoryData = [
+  'DevOps',
+  'UX Design',
+  'Backend Development',
+  'Fundraising',
+  'Blockchain',
+
+  'Brand',
+  'SEO',
+  'Financial Analysis',
+  'Email Marketing',
+  'Performance Marketing',
+]
 
 export default function LandingPage() {
-  const [categories, setCategories] = useState<string[]>([
-    'DevOps',
-    'UX Design',
-    'Backend Development',
-    'Fundraising',
-    'Blockchain',
+  const timeoutRef = useRef<any>(null)
 
-    'Brand',
-    'SEO',
-    'Financial Analysis',
-    'Email Marketing',
-    'Performance Marketing',
-  ])
+  const [categories, setCategories] = useState<string[]>(categoryData)
+
+  useEffect(() => {
+    timeoutRef.current = setTimeout(() => {
+      shuffleCategories()
+    }, 2000)
+    return () => {
+      clearTimeout(timeoutRef.current)
+    }
+  })
 
   const shuffleCategories = () => {
     setCategories((categories) => {
@@ -30,6 +43,10 @@ export default function LandingPage() {
       }
       return newCategories
     })
+
+    timeoutRef.current = setTimeout(() => {
+      shuffleCategories()
+    }, 2000)
   }
 
   return (
@@ -46,7 +63,10 @@ export default function LandingPage() {
 
         <HeroButton />
         <div className="mt-8 flex max-w-5xl flex-wrap items-center justify-around gap-4 sm:w-full">
-          <motion.div className="flex flex-wrap items-center justify-center gap-8">
+          <motion.div
+            layoutRoot
+            className="flex flex-wrap items-center justify-center gap-8"
+          >
             {categories.map((category) => (
               <CategoryPill
                 shuffleCategories={shuffleCategories}
@@ -68,10 +88,11 @@ type CategoryPillProps = {
 function CategoryPill({ category, shuffleCategories }: CategoryPillProps) {
   return (
     <motion.div
-      layout="position"
+      layout
       layoutId={category}
-      className="flex h-12 items-center justify-center rounded-3xl border-2 border-black bg-white px-4"
-      onClick={shuffleCategories}
+      transition={{ type: 'spring', stiffness: 500, damping: 30, duration: 2 }}
+      key={category}
+      className="flex h-12 select-none items-center justify-center rounded-3xl border-2 border-black bg-white px-4"
     >
       <div className="whitespace-nowrap text-lg font-semibold">{category}</div>
     </motion.div>

@@ -24,10 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-stone-100 text-black ${inter.className}`}>
-        <div className="flex min-h-screen flex-col p-4">
-          <Navbar></Navbar>
-          {children}
-        </div>
+        <Navbar></Navbar>
+        <div className="flex min-h-screen flex-col p-4">{children}</div>
         <Footer />
       </body>
     </html>

@@ -27,6 +27,8 @@ const config: Config = {
   },
   plugins: [daisyUI],
   daisyui: {
+    themes: false,
+    darkTheme: false,
     base: false,
     // styled: false,
   },
