@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex  min-h-screen flex-col bg-stone-100 text-black ${inter.className}`}
+        className={`mt-28 flex min-h-screen flex-col text-black sm:mt-16 ${inter.className}`}
       >
         <Navbar></Navbar>
         {children}

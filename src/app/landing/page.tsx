@@ -34,10 +34,10 @@ export default function LandingPage() {
   const categories = categoryData
 
   return (
-    <main className="mt-20 flex flex-col items-center justify-center bg-white px-4 sm:mt-0">
+    <main className="flex flex-col items-center justify-center bg-white  sm:mt-0">
       <section
         id="hero"
-        className="flex min-h-screen flex-col items-center justify-center pb-40  text-center"
+        className="flex min-h-screen flex-col items-center justify-center px-4 pb-40 text-center"
       >
         <motion.div
           layout
@@ -60,7 +60,7 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
-      <section className="w-full rounded bg-slate-100 pt-12">
+      <section className="w-full rounded bg-slate-100 px-4 pt-12">
         <div className="mx-auto -mt-40 grid w-full max-w-7xl grid-cols-1 gap-8 rounded-t-3xl border-t bg-white px-8 pt-16 shadow md:grid-cols-2">
           <Image
             src="/landing/booking.png"
