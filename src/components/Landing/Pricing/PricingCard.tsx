@@ -60,7 +60,7 @@ function FeatureItem({ text, isReady, index }: FeatureItemProps) {
         {text}
       </span>
       {!isReady && (
-        <div className="ml-auto rounded-md bg-black px-4 py-2 text-white">
+        <div className="ml-auto whitespace-nowrap rounded-md bg-black px-4 py-2 text-white">
           Coming soon
         </div>
       )}

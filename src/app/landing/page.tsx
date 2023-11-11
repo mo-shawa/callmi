@@ -83,10 +83,10 @@ export default function LandingPage() {
         </div>
         <div
           id="pricing"
-          className="mx-auto flex w-full max-w-7xl flex-col items-center justify-start gap-8 bg-white p-8 shadow-xl"
+          className="mx-auto flex w-full max-w-7xl flex-col flex-wrap items-center justify-start gap-8 bg-white p-8 shadow-xl"
         >
           <h1 className=" font-semibold">Zero up front costs</h1>
-          <div className="grid grid-cols-2 grid-rows-1 gap-8">
+          <div className="grid grid-cols-1 grid-rows-1 gap-8 sm:grid-cols-2">
             <div className="col-span-1 flex gap-4">
               <Image src="/svg/check.svg" alt="check" width={24} height={24} />
               <p>No credit card required.</p>
@@ -102,7 +102,7 @@ export default function LandingPage() {
           </p>
           <div
             id="pricing-cards"
-            className=" flex w-full max-w-3xl justify-evenly gap-8"
+            className="flex w-full max-w-3xl flex-wrap justify-evenly gap-8"
           >
             <PricingCard
               planName="Starter"
