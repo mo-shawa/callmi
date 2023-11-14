@@ -1,44 +1,16 @@
 'use client'
-import { Bars3Icon, XCircleIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
+import { useSession } from 'next-auth/react'
 
 import Image from 'next/image'
 import Link from 'next/link'
 export default function Navbar() {
-  return (
-    // <nav
-    //   className="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-white px-4 py-10 text-black shadow-md"
-    //   role="navigation "
-    // >
-    //   <Link href="/" id="nav-left" className="flex items-center">
-    //     <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
-    //       <Image src="/svg/logo.svg" alt="logo" height={64} width={64} />
-    //     </motion.div>
-    //     <h1 className="text-2xl">Callmi</h1>
-    //   </Link>
-    //   <div id="nav-right">
-    //     <details className="dropdown cursor-pointer sm:hidden" id="mobile">
-    //       <summary>
-    //         <Bars3Icon className="h-6 w-6" />
-    //       </summary>
-    //       <div className="absolute right-0 top-16 rounded-xl bg-white p-4 shadow-xl">
-    //         <ul className="flex flex-col gap-3">
-    //           <li>
-    //             <Link href="/signup">Sign Up</Link>
-    //           </li>
-    //           <li>
-    //             <Link href="/login">Login</Link>
-    //           </li>
-    //           <li>
-    //             <Link href="/about">About</Link>
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </details>
+  const { data: session } = useSession()
 
-    //     {/* <div className="btn">hello</div> */}
-    //   </div>
-    // </nav>
+  console.log({ session })
+
+  return (
     <div className="navbar fixed top-0 z-50 bg-white shadow">
       <div className="flex-1">
         <Link href="/" id="nav-left" className="flex items-center">
@@ -51,14 +23,14 @@ export default function Navbar() {
       <ul id="desktop-menu" className="hidden grid-cols-2 gap-4 sm:grid">
         <li>
           <Link
-            href="/auth/signin"
+            href="/api/auth/signin"
             className="btn col-span-1 w-full bg-white text-black"
           >
             Sign in
           </Link>
         </li>
         <li>
-          <Link href="/auth/signin" className="btn col-span-1 w-full">
+          <Link href="/api/auth/signin" className="btn col-span-1 w-full">
             Sign up for free
           </Link>
         </li>
@@ -75,19 +47,15 @@ export default function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
           >
             <li>
-              <Link href="/auth/signin" className="justify-between">
+              <Link href="/api/auth/signin" className="justify-between">
                 Sign in
                 {/* <span className="badge">New</span> */}
               </Link>
             </li>
-            <li>
-              <Link href="/auth/signin" className="justify-between">
-                Sign up for free
-              </Link>
-            </li>
+            <li>/api</li>
           </ul>
         </div>
       </div>
