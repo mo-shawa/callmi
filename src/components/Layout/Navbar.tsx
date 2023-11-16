@@ -1,40 +1,49 @@
-'use client'
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { motion } from 'framer-motion'
-import { useSession } from 'next-auth/react'
-
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
-export default function Navbar() {
-  const { data: session } = useSession()
-
+import NavLogo from './NavLogo'
+import options from '@/app/api/auth/[...nextauth]/options'
+export default async function Navbar() {
+  const session = await getServerSession(options)
   console.log({ session })
 
   return (
     <div className="navbar fixed top-0 z-50 bg-white shadow">
       <div className="flex-1">
-        <Link href="/" id="nav-left" className="flex items-center">
-          <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
-            <Image src="/svg/logo.svg" alt="logo" height={64} width={64} />
-          </motion.div>
-          <h1 className="text-2xl">Callmi</h1>
-        </Link>
+        <NavLogo />
       </div>
       <ul id="desktop-menu" className="hidden grid-cols-2 gap-4 sm:grid">
-        <li>
-          <Link
-            href="/api/auth/signin"
-            className="btn col-span-1 w-full bg-white text-black"
-          >
-            Sign in
-          </Link>
-        </li>
-        <li>
-          <Link href="/api/auth/signin" className="btn col-span-1 w-full">
-            Sign up for free
-          </Link>
-        </li>
+        {!session && (
+          <>
+            <li>
+              <Link
+                href="/api/auth/signin"
+                className="btn col-span-1 w-full bg-white text-black"
+              >
+                Sign in
+              </Link>
+            </li>
+            <li>
+              <Link href="/api/auth/signin" className="btn col-span-1 w-full">
+                Sign up for free
+              </Link>
+            </li>
+          </>
+        )}
+        {session && (
+          <li>
+            <Image
+              src={session.user?.image || 'https://i.pravatar.cc/150?img=3'}
+              alt="Avatar"
+              width={34}
+              height={34}
+              className="avatar rounded-full border"
+            />
+          </li>
+        )}
       </ul>
+
       <div id="mobile-menu" className="block flex-none sm:hidden">
         <div className="dropdown dropdown-end">
           <label
