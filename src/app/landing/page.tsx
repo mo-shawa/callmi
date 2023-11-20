@@ -74,7 +74,7 @@ export default function LandingPage() {
           </div>
           <p className="w-full max-w-4xl text-center text-gray-500">
             We want to make money when you make money. Enjoy all that Callmi has
-            to offer, including scheduling and payments for free, forever.{' '}
+            to offer, including scheduling and payments for free, forever.
           </p>
           <div
             id="pricing-cards"

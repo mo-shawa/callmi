@@ -16,3 +16,7 @@ p {
     @apply rounded-3xl border border-black bg-black text-light;
   }
 }
+
+.select-pill input[type='checkbox'] {
+  display: none;
+}

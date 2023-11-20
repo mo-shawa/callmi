@@ -1,14 +1,23 @@
 type Props = {
-  children?: React.ReactNode
-}
+  children: React.ReactNode
+  onChange: (e: React.ChangeEvent<HTMLInputElement>, data: any) => void
+  data: any
+  isSelected: boolean
+} // I give up on this one
 
-const ExpertisePill = ({ children }: Props) => {
+const SelectPill = ({ children, onChange, data, isSelected }: Props) => {
   return (
-    <label className="inline-flex cursor-pointer items-center rounded-full bg-gray-200 p-4">
-      <input type="checkbox" className="form-checkbox h-5 w-5 text-gray-600" />
-      <span className="ml-2 font-medium text-gray-700">{children}</span>
+    <label
+      className={`select-pill inline-flex cursor-pointer select-none items-center rounded-full  border p-4 ${
+        isSelected
+          ? 'border-green-500 bg-green-200 text-green-800'
+          : 'bg-gray-200'
+      }`}
+    >
+      <input onChange={(e) => onChange(e, data)} type="checkbox" />
+      <span className="font-medium">{children}</span>
     </label>
   )
 }
 
-export default ExpertisePill
+export default SelectPill

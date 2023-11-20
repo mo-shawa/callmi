@@ -14,6 +14,9 @@ const options: AuthOptions = {
       },
     }),
   ],
+  pages: {
+    newUser: '/onboarding/1',
+  },
   callbacks: {
     async jwt({ token, user, trigger }) {
       // console.log('JWT CALLBACK --- ', { token, user })
@@ -29,6 +32,8 @@ const options: AuthOptions = {
         // @ts-ignore
         session.user.id = token.sub
       }
+
+      // this.redirect
       return session
     },
   },

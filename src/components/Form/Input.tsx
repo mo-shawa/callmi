@@ -21,7 +21,7 @@ export default function Input({
   required,
 }: InputProps) {
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control w-full max-w-sm">
       <label className="label" htmlFor={name}>
         <span className="label-text">{label}</span>
       </label>

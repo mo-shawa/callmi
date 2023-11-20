@@ -10,7 +10,7 @@ export default function NavLogo() {
       <motion.div whileHover={{ rotate: 180, scale: 1.1 }}>
         <Image src="/svg/logo.svg" alt="logo" height={64} width={64} />
       </motion.div>
-      <h1 className="text-2xl">Callmi</h1>
+      <h1 className="text-2xl tracking-wide">Callmi</h1>
     </Link>
   )
 }
