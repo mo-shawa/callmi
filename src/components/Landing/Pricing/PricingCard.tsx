@@ -1,5 +1,4 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
-import HeroButton from '@/components/Button/HeroButton'
 type Feature = {
   text: string
   isReady: boolean
@@ -55,12 +54,18 @@ function FeatureItem({ text, isReady, index }: FeatureItemProps) {
     <li className="flex items-center gap-2">
       <div
         className={`h-4 w-4 rounded p-0.5 ${
-          index === 0 ? colorClasses.black : colorClasses.gray
+          // index === 0 ? colorClasses.black : colorClasses.gray
+          colorClasses.black
         }`}
       >
         <CheckIcon className="stroke-[5] text-white" />
       </div>
-      <span className={index === 0 ? 'text-black' : 'text-gray-400'}>
+      <span
+        className={
+          // index === 0 ? 'text-black' : 'text-gray-400'
+          'text-black'
+        }
+      >
         {text}
       </span>
       {!isReady && (

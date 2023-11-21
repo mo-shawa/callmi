@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion'
 import { useFormStatus } from 'react-dom'
 
-export function SubmitButton() {
+type Props = {
+  children?: React.ReactNode
+}
+
+export function SubmitButton({ children }: Props = { children: 'Submit' }) {
   const { pending } = useFormStatus()
 
   return (
@@ -11,11 +15,11 @@ export function SubmitButton() {
       variants={variants}
       whileHover="hover"
       whileTap="tap"
-      className="rounded-3xl border bg-primary py-4 text-white"
+      className="w-full max-w-sm rounded-3xl border bg-primary py-4 text-white"
       type="submit"
       aria-disabled={pending}
     >
-      {pending ? 'One sec...' : 'Submit'}
+      {pending ? <span className="loading loading-spinner" /> : children}
     </motion.button>
   )
 }

@@ -1,9 +1,10 @@
 'use client'
 import { useState } from 'react'
 import Image from 'next/image'
-import { AnimationProps, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { subscribe } from '@/actions'
-import { SubmitButton } from './SubmitButton'
+import { SubmitButton } from '@/components/Form/SubmitButton'
+import { logoVariants, formVariants, getFadeInProps } from '@/utils/framer'
 
 export default function EmailForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -60,34 +61,13 @@ export default function EmailForm() {
           placeholder="your@email.com"
           required
         />
-        <SubmitButton />
+        <SubmitButton>Sign up</SubmitButton>
       </motion.form>
       {error && (
-        <motion.small {...fadeInProps} className=" text-red-500">
+        <motion.small {...getFadeInProps()} className=" text-red-500">
           {error}
         </motion.small>
       )}
     </motion.div>
   )
-}
-
-const formVariants: AnimationProps['variants'] = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { ease: 'easeInOut' } },
-}
-
-const logoVariants: AnimationProps['variants'] = {
-  hidden: { opacity: 0, scale: 0.8, y: -100 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { type: 'spring', bounce: 0.55 },
-  },
-}
-
-const fadeInProps = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { delay: 0.5 },
 }
