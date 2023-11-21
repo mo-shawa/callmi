@@ -14,6 +14,7 @@ export const expertiseTypeData = [
   'SEM & SEO',
   'Social Media',
   'Strategy & Operations',
+  'Coaching',
 ] as const
 export const industryTypeData = [
   'Artificial Intelligence',
@@ -32,6 +33,7 @@ export const industryTypeData = [
   'Media & Entertainment',
   'Real Estate',
   'Venture Capital',
+  'Career Expert',
 ] as const
 
 export const expertiseData: Expertise[] = [
@@ -50,6 +52,7 @@ export const expertiseData: Expertise[] = [
   'SEM & SEO',
   'Social Media',
   'Strategy & Operations',
+  'Coaching',
 ]
 
 export const industryData: Industry[] = [
@@ -69,4 +72,5 @@ export const industryData: Industry[] = [
   'Media & Entertainment',
   'Real Estate',
   'Venture Capital',
+  'Career Expert',
 ]

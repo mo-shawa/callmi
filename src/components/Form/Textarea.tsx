@@ -1,18 +1,16 @@
 type InputProps = {
   name: string
   label: string
-  type: string
   placeholder?: string
   value?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   disabled?: boolean
   required?: boolean
 }
 
-export default function Input({
+export default function Textarea({
   name,
   label,
-  type,
   placeholder,
   value,
   onChange,
@@ -24,13 +22,12 @@ export default function Input({
       <label className="label" htmlFor={name}>
         <span className="label-text">{label}</span>
       </label>
-      <input
-        type={type}
+      <textarea
         name={name}
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className="input input-bordered"
+        className="textarea textarea-bordered"
         defaultValue={value}
         disabled={disabled}
         required={required}

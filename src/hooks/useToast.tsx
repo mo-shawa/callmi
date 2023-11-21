@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
 type Props = {
-  icon: React.ReactNode
-  children: React.ReactNode
+  message: string
+  icon?: React.ReactNode
   className?: string
 }
 
-export default function useToast({ icon, children, className }: Props) {
+export default function useToast({ icon, message, className }: Props) {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function useToast({ icon, children, className }: Props) {
       <div className="toast">
         <div className={`alert flex gap-2 ${className}`}>
           {icon}
-          <span>{children}</span>
+          <span>{message}</span>
         </div>
       </div>
     ),

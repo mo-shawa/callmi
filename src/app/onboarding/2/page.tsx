@@ -11,10 +11,10 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import useToast from '@/hooks/useToast'
 
 export default function OnboardingStep2() {
-  const { data: session, status } = useSession()
+  const { status } = useSession()
   const { element: toast, show } = useToast({
     icon: <ExclamationTriangleIcon className="h-6 w-6 text-yellow-900" />,
-    children: 'Please select at least one expertise and one industry',
+    message: 'Please select at least one of each',
     className: 'bg-yellow-100 border-yellow-500 text-yellow-800',
   })
 
@@ -52,11 +52,12 @@ export default function OnboardingStep2() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = (/*e: React.FormEvent<HTMLFormElement>*/) => {
+    // e.preventDefault()
     if (selectedExpertises.length === 0 || selectedIndustries.length === 0) {
       return show()
     }
+    console.log({ selectedExpertises, selectedIndustries })
     redirect('/onboarding/3')
   }
   if (status === 'unauthenticated') return redirect('/api/auth/signin')
@@ -67,12 +68,13 @@ export default function OnboardingStep2() {
         <h1>Where is your expertise?</h1>
         <small className="-mt-6 text-gray-500">Select up to 3</small>
         <form
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           className="mt-8 flex flex-col justify-center gap-8"
         >
           <div className="flex flex-wrap gap-4">
             {expertiseData.map((expertise) => (
               <SelectPill
+                key={expertise}
                 isSelected={selectedExpertises.includes(expertise)}
                 data={expertise}
                 onChange={handleSelectExpertise}
@@ -86,6 +88,7 @@ export default function OnboardingStep2() {
           <div className="flex flex-wrap gap-4">
             {industryData.map((industry) => (
               <SelectPill
+                key={industry}
                 isSelected={selectedIndustries.includes(industry)}
                 onChange={handleSelectIndustry}
                 data={industry}
@@ -96,7 +99,13 @@ export default function OnboardingStep2() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <PrimaryButton href="/onboarding/1">Previous</PrimaryButton>
-            <SubmitButton>Next</SubmitButton>
+            <PrimaryButton
+              href={
+                selectedExpertises && selectedIndustries ? '/onboarding/3' : ''
+              }
+            >
+              Next
+            </PrimaryButton>
           </div>
         </form>
       </div>
