@@ -1,26 +1,54 @@
 'use client'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { ClockIcon } from '@heroicons/react/24/outline'
+import { motion } from 'framer-motion'
 
 type AvailabilityProps = {
   dayOfWeek: string
 }
 
+type Time = {
+  // hour is 1-12
+  hour: number
+  minute: 0 | 15 | 30 | 45
+  ampm: 'am' | 'pm'
+}
+
 export default function Availability({ dayOfWeek }: AvailabilityProps) {
   const [isAvailable, setIsAvailable] = useState(false)
-  const [startHour, setStartHour] = useState('')
-  const [endHour, setEndHour] = useState('')
+  const [startTime, setStartTime] = useState<Time>({
+    hour: 9,
+    minute: 0,
+    ampm: 'am',
+  })
+  const [endTime, setEndTime] = useState<Time>({
+    hour: 5,
+    minute: 0,
+    ampm: 'pm',
+  })
 
-  const handleStartHourChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setStartHour(e.target.value)
-  }
-
-  const handleEndHourChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setEndHour(e.target.value)
+  const handleTimeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    setTime: Dispatch<SetStateAction<Time>>
+  ) => {
+    switch (e.target.name) {
+      case 'hours':
+        setTime((prev) => ({ ...prev, hour: +e.target.value }))
+        break
+      case 'minutes':
+        setTime((prev) => ({
+          ...prev,
+          minute: +e.target.value as Time['minute'],
+        }))
+        break
+      case 'ampm':
+        setTime((prev) => ({ ...prev, ampm: e.target.value as 'am' | 'pm' }))
+        break
+    }
   }
 
   return (
-    <div className="px-4 py-2">
+    <motion.div layout layoutRoot className="px-4 py-2">
       <div className="flex items-center gap-4">
         <input
           type="checkbox"
@@ -35,17 +63,19 @@ export default function Availability({ dayOfWeek }: AvailabilityProps) {
         <div className="mt-4 flex gap-4">
           <TimePicker
             fromOrTo="from"
-            onChange={handleStartHourChange}
+            time={startTime}
+            onChange={(e) => handleTimeChange(e, setStartTime)}
             name={dayOfWeek}
           />
           <TimePicker
             fromOrTo="to"
-            onChange={handleEndHourChange}
+            time={endTime}
+            onChange={(e) => handleTimeChange(e, setEndTime)}
             name={dayOfWeek}
           />
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
 
@@ -53,18 +83,20 @@ type TimePickerProps = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
   name: string
   fromOrTo: 'from' | 'to'
+  time: Time
 }
 
-function TimePicker({ onChange, name, fromOrTo }: TimePickerProps) {
+function TimePicker({ onChange, name, fromOrTo, time }: TimePickerProps) {
   return (
     <div className="w-min">
       <span className="ml-1">{fromOrTo}</span>
       <div className="flex items-center gap-2 rounded-lg bg-white p-5 shadow">
         <ClockIcon className=" h-6 w-6" />
         <select
-          name={`hours-${name}`}
+          name="hours"
           className="appearance-none bg-transparent text-xl outline-none"
           onChange={onChange}
+          value={time.hour}
         >
           {Array.from(Array(12).keys()).map((i) => (
             <option key={i} value={i + 1}>
@@ -74,17 +106,23 @@ function TimePicker({ onChange, name, fromOrTo }: TimePickerProps) {
         </select>
         <span className=" text-xl">:</span>
         <select
-          name={`minutes-${name}`}
+          name="minutes"
           className="appearance-none bg-transparent text-xl outline-none"
+          value={time.minute}
+          onChange={onChange}
         >
-          <option value="0">00</option>
-          <option value="15">15</option>
-          <option value="30">30</option>
-          <option value="45">45</option>
+          <option selected value={0}>
+            00
+          </option>
+          <option value={15}>15</option>
+          <option value={30}>30</option>
+          <option value={45}>45</option>
         </select>
         <select
-          name={`ampm-${name}`}
+          name="ampm"
           className="appearance-none bg-transparent text-xl outline-none"
+          value={time.ampm}
+          onChange={onChange}
         >
           <option value="am">AM</option>
           <option value="pm">PM</option>

@@ -119,6 +119,7 @@ export default function OnboardingStep2() {
           className="sticky left-0 top-0 h-full max-h-screen w-full object-cover"
           width="1024"
           height="1024"
+          priority
         />
       </div>
       {toast}

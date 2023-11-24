@@ -1,10 +1,12 @@
 'use client'
 import EmailForm from '@/components/EmailForm'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 export default function Home() {
+  redirect('/landing')
   return (
-    <main className="flex h-full flex-1 flex-col items-center justify-center px-4 pt-16">
+    <main className="flex h-full flex-1 flex-col items-center justify-center px-4 pt-20">
       <section className="flex h-full flex-col items-center justify-center">
         <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-4 md:grid-cols-2">
           <div className="flex max-w-md flex-col justify-center gap-6">

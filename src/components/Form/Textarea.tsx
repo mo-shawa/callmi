@@ -27,7 +27,8 @@ export default function Textarea({
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className="textarea textarea-bordered"
+        className="textarea textarea-bordered w-full"
+        minLength={20}
         defaultValue={value}
         disabled={disabled}
         required={required}
