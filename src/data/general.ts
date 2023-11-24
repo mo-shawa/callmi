@@ -74,3 +74,13 @@ export const industryData: Industry[] = [
   'Venture Capital',
   'Career Expert',
 ]
+
+export const daysOfWeek = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+]

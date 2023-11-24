@@ -14,7 +14,7 @@ export default function LandingPage() {
   const categories = categoryData
 
   return (
-    <main className="flex flex-col items-center justify-center bg-white  sm:mt-0">
+    <main className="flex flex-col items-center justify-center bg-white pt-28 sm:pt-20">
       <section
         id="hero"
         className="flex min-h-screen flex-col items-center justify-center px-4 pb-40 text-center"

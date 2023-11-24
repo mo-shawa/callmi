@@ -7,8 +7,7 @@ import Providers from './Providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title:
-    'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
+  title: 'Callmi - Fast online appointment scheduling',
   description:
     'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',
   openGraph: {
@@ -23,15 +22,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`mt-28 flex min-h-screen flex-col text-black sm:mt-16 ${inter.className}`}
-      >
-        <Providers>
-          <Navbar></Navbar>
+      <Providers>
+        <body
+          className={` flex min-h-screen flex-col text-black  ${inter.className}`}
+        >
+          <Navbar />
           {children}
           <Footer />
-        </Providers>
-      </body>
+        </body>
+      </Providers>
     </html>
   )
 }

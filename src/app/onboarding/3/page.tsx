@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Textarea from '@/components/Form/Textarea'
 import { PrimaryButton } from '@/components/Button/PrimaryButton'
 import Availability from '@/components/Form/Availability'
+import { daysOfWeek } from '@/data/general'
 async function formAction(data: FormData) {
   'use server'
   // Validate data
@@ -15,16 +16,6 @@ async function formAction(data: FormData) {
   // Redirect to next step
   redirect('/dashboard')
 }
-
-const daysOfWeek = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-]
 
 export default async function OnboardingStep3() {
   const session = await getServerSession(options)
@@ -41,7 +32,7 @@ export default async function OnboardingStep3() {
           <Textarea
             label="Bio"
             name="bio"
-            placeholder="Tell us about yourself..."
+            placeholder="I am a software engineer with 10+ years of experience, currently working at Google. I am an expert in React and TypeScript."
             required
           />
           <h1>When are you available?</h1>
@@ -67,6 +58,7 @@ export default async function OnboardingStep3() {
           className="sticky left-0 top-0 h-full max-h-screen w-full object-cover"
           width="1024"
           height="1024"
+          priority
         />
       </div>
     </main>
