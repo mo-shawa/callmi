@@ -9,7 +9,7 @@ export default async function Navbar() {
   console.log({ session })
 
   return (
-    <div className="navbar fixed top-0 z-50 bg-white shadow">
+    <div className="navbar fixed top-0 z-50 w-full bg-white shadow">
       <div className="flex-1">
         <NavLogo />
       </div>
@@ -56,7 +56,7 @@ export default async function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             <li>
               <Link href="/api/auth/signin" className="justify-between">

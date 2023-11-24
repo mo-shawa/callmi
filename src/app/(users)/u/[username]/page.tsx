@@ -1,16 +1,14 @@
 'use client'
-import options from '@/app/api/auth/[...nextauth]/options'
-import { getServerSession } from 'next-auth'
+import BookingSidebar from '@/components/UserPage/BookingSidebar'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
+import { useState } from 'react'
 
-export default async function UserPage({
-  params,
-}: {
-  params: { username: string }
-}) {
+export default function UserPage({ params }: { params: { username: string } }) {
   console.log({ params })
+  const { data: session } = useSession()
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
 
-  const session = await getServerSession(options)
   return (
     <main className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-3 grid-rows-3 gap-4  px-4 pb-4 pt-24">
       <div className="col-span-3 row-span-3 flex flex-col gap-4 sm:col-span-2">
@@ -74,27 +72,11 @@ export default async function UserPage({
           />
         </div>
       </div>
-      <aside className="col-span-1 row-span-3 rounded-3xl border border-green-500 p-10">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-semibold">
-            Book a call with{' '}
-            <span className="whitespace-nowrap">{user.name}</span>
-          </h1>
-          <div className="flex flex-col gap-4"></div>
-          {/* <h1 className="text-2xl font-bold">Expertise</h1>
-          <div className="flex flex-wrap gap-2">
-            {user.expertise.map((expertise) => (
-              <CategoryPill key={expertise} category={expertise} />
-            ))}
-          </div>
-          <h1 className="text-2xl font-bold">Industry</h1>
-          <div className="flex flex-wrap gap-2">
-            {user.industry.map((industry) => (
-              <CategoryPill key={industry} category={industry} />
-            ))}
-          </div> */}
-        </div>
-      </aside>
+      <BookingSidebar
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        user={user}
+      />
     </main>
   )
 }
