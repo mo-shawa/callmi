@@ -1,19 +1,19 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { getServerSession } from 'next-auth'
-import Image from 'next/image'
 import Link from 'next/link'
 import NavLogo from './NavLogo'
 import options from '@/app/api/auth/[...nextauth]/options'
+import Avatar from '../General/Avatar'
 export default async function Navbar() {
   const session = await getServerSession(options)
   console.log({ session })
 
   return (
-    <div className="navbar fixed top-0 z-50 w-full bg-white shadow">
-      <div className="flex-1">
+    <div className="navbar fixed top-0 z-50 w-full justify-between bg-white shadow">
+      <div>
         <NavLogo />
       </div>
-      <ul id="desktop-menu" className="hidden grid-cols-2 gap-4 sm:grid">
+      <ul id="desktop-menu" className="hidden grid-cols-2 gap-4 md:grid">
         {!session && (
           <>
             <li>
@@ -33,18 +33,16 @@ export default async function Navbar() {
         )}
         {session && (
           <li>
-            <Image
-              src={session.user?.image || 'https://i.pravatar.cc/150?img=3'}
-              alt="Avatar"
-              width={34}
-              height={34}
-              className="avatar rounded-full border"
+            <Avatar
+              size="sm"
+              src={session.user?.image}
+              name={session.user?.name}
             />
           </li>
         )}
       </ul>
 
-      <div id="mobile-menu" className="block flex-none sm:hidden">
+      <div id="mobile-menu" className="block flex-none md:hidden">
         <div className="dropdown dropdown-end">
           <label
             tabIndex={0}

@@ -37,7 +37,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section className="w-full rounded bg-slate-100 px-4 pt-12">
+      <section className="w-full rounded bg-stone-100 px-4 pt-12">
         <div className="mx-auto -mt-40 grid w-full max-w-7xl grid-cols-1 gap-8 rounded-t-3xl border-t bg-white px-8 py-16 shadow-xl md:grid-cols-2">
           <Image
             src="/landing/booking.png"

@@ -7,7 +7,7 @@ export default function FeatureCard({
   soon?: boolean
 }) {
   return (
-    <div className="flex flex-col gap-2 rounded-xl bg-slate-100 p-4 text-xl ">
+    <div className="flex flex-col gap-2 rounded-xl bg-stone-100 p-4 text-xl ">
       <CheckBadgeIcon className="h-6 w-6" />
       {children}
       {soon && (

@@ -3,11 +3,11 @@ export type FAQ = {
   answer: string
 }
 
-type FaqItemProps = FAQ & {
+type Props = FAQ & {
   isLast: boolean
 }
 
-export default function FaqItem({ question, answer, isLast }: FaqItemProps) {
+export default function FaqItem({ question, answer, isLast }: Props) {
   return (
     <>
       <div className="collapse">

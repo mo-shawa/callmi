@@ -1,4 +1,4 @@
-type InputProps = {
+type Props = {
   name: string
   label: string
   placeholder?: string
@@ -16,7 +16,7 @@ export default function Textarea({
   onChange,
   disabled,
   required,
-}: InputProps) {
+}: Props) {
   return (
     <div className="form-control w-full max-w-sm">
       <label className="label" htmlFor={name}>
