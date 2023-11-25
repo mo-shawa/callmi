@@ -1,4 +1,4 @@
-type InputProps = {
+type Props = {
   name: string
   label: string
   type: string
@@ -18,7 +18,7 @@ export default function Input({
   onChange,
   disabled,
   required,
-}: InputProps) {
+}: Props) {
   return (
     <div className="form-control w-full max-w-sm">
       <label className="label" htmlFor={name}>

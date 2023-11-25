@@ -1,15 +1,17 @@
 'use client'
 
+import { cn } from '@/utils/utils'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 type Props = {
+  className?: string
   children?: React.ReactNode
   href?: string
   onClick?: () => void
 }
 
-export function PrimaryButton({ children, href, onClick }: Props) {
+export function PrimaryButton({ className, children, href, onClick }: Props) {
   const Wrapper = ({ children }: Props) =>
     href ? <Link href={href}>{children}</Link> : <>{children}</>
 
@@ -19,7 +21,10 @@ export function PrimaryButton({ children, href, onClick }: Props) {
         variants={variants}
         whileHover="hover"
         whileTap="tap"
-        className="w-full max-w-sm rounded-3xl border bg-primary py-4 text-white"
+        className={cn(
+          'w-full max-w-sm rounded-3xl border bg-primary py-4 text-white',
+          className
+        )}
         type="button"
         {...(onClick ? { onClick: onClick } : {})}
       >
@@ -31,9 +36,9 @@ export function PrimaryButton({ children, href, onClick }: Props) {
 
 const variants = {
   hover: {
-    scale: 1.1,
+    scale: 1.05,
   },
   tap: {
-    scale: 0.9,
+    scale: 1,
   },
 }

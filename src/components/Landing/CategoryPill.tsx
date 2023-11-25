@@ -1,11 +1,11 @@
 import { ease } from '@/utils/framer'
 import { motion } from 'framer-motion'
 
-type CategoryPillProps = {
+type Props = {
   category: string
 }
 
-export default function CategoryPill({ category }: CategoryPillProps) {
+export default function CategoryPill({ category }: Props) {
   return (
     <motion.div
       layout

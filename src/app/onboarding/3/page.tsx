@@ -21,7 +21,7 @@ export default async function OnboardingStep3() {
   const session = await getServerSession(options)
   if (!session) return redirect('/api/auth/signin')
   return (
-    <main className="grid w-full flex-1 grid-cols-1 bg-stone-50  sm:grid-cols-2 ">
+    <main className="grid w-full flex-1 grid-cols-1 bg-stone-50 pt-28 sm:grid-cols-2 sm:pt-20 ">
       <div id="left" className="col-span-1 p-16">
         <small className="tracking-wider text-gray-500">Step 3/3</small>
         <h1>Almost there..</h1>
@@ -50,12 +50,12 @@ export default async function OnboardingStep3() {
       </div>
       <div
         id="right"
-        className="relative col-span-1 hidden max-h-screen bg-primary sm:block"
+        className="relative col-span-1 hidden bg-primary sm:block"
       >
         <Image
           src="/onboarding/3.jpg"
           alt="Onboarding image 1"
-          className="sticky left-0 top-0 h-full max-h-screen w-full object-cover"
+          className="sticky left-0 top-20 h-full max-h-screen w-full object-cover"
           width="1024"
           height="1024"
           priority

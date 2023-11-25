@@ -9,9 +9,11 @@ import Image from 'next/image'
 import { PrimaryButton } from '@/components/Button/PrimaryButton'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import useToast from '@/hooks/useToast'
+import { useRouter } from 'next/navigation'
 
 export default function OnboardingStep2() {
   const { status } = useSession()
+  const { push } = useRouter()
   const { element: toast, show } = useToast({
     icon: <ExclamationTriangleIcon className="h-6 w-6 text-yellow-900" />,
     message: 'Please select at least one of each',
@@ -58,11 +60,11 @@ export default function OnboardingStep2() {
       return show()
     }
     console.log({ selectedExpertises, selectedIndustries })
-    redirect('/onboarding/3')
+    push('/onboarding/3')
   }
   if (status === 'unauthenticated') return redirect('/api/auth/signin')
   return (
-    <main className="grid w-full flex-1 grid-cols-2  bg-stone-50 ">
+    <main className="grid w-full flex-1 grid-cols-2 bg-stone-50 pt-28 sm:pt-20 ">
       <div id="left" className="col-span-2 p-8 sm:col-span-1">
         <small className="tracking-wider text-gray-500">Step 2/4</small>
         <h1>Where is your expertise?</h1>
@@ -99,13 +101,7 @@ export default function OnboardingStep2() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <PrimaryButton href="/onboarding/1">Previous</PrimaryButton>
-            <PrimaryButton
-              href={
-                selectedExpertises && selectedIndustries ? '/onboarding/3' : ''
-              }
-            >
-              Next
-            </PrimaryButton>
+            <PrimaryButton onClick={handleSubmit}>Next</PrimaryButton>
           </div>
         </form>
       </div>
@@ -116,7 +112,7 @@ export default function OnboardingStep2() {
         <Image
           src="/onboarding/2.jpg"
           alt="Onboarding image 1"
-          className="sticky left-0 top-0 h-full max-h-screen w-full object-cover"
+          className="sticky left-0 top-20 h-full max-h-screen w-full object-cover"
           width="1024"
           height="1024"
           priority

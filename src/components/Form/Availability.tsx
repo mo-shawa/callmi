@@ -15,6 +15,7 @@ type Time = {
 }
 
 export default function Availability({ dayOfWeek }: AvailabilityProps) {
+  dayOfWeek = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1)
   const [isAvailable, setIsAvailable] = useState(false)
   const [startTime, setStartTime] = useState<Time>({
     hour: 9,

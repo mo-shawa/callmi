@@ -23,7 +23,7 @@ export default async function OnboardingStep1() {
   const session = await getServerSession(options)
   if (!session) return redirect('/api/auth/signin')
   return (
-    <main className="grid w-full flex-1 grid-cols-1 bg-stone-50  sm:grid-cols-2 ">
+    <main className="grid w-full flex-1 grid-cols-1 bg-stone-50 pt-28 sm:grid-cols-2  sm:pt-20 ">
       <div id="left" className="col-span-1 p-16">
         <small className="tracking-wider text-gray-500">Step 1/4</small>
         <h1>Let&apos;s get you set up</h1>
