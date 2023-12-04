@@ -4,20 +4,21 @@ type Props = {
   type: string
   placeholder?: string
   value?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   disabled?: boolean
   required?: boolean
+  options?: string[]
 }
 
-export default function Input({
+export default function Select({
   name,
   label,
-  type,
   placeholder,
   value,
   onChange,
   disabled,
   required,
+  options,
 }: Props) {
   return (
     <div className='form-control w-full'>
@@ -27,17 +28,28 @@ export default function Input({
       >
         <span className='label-text'>{label}</span>
       </label>
-      <input
-        type={type}
+      <select
         name={name}
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className='input input-bordered'
+        className='select select-bordered'
         defaultValue={value}
         disabled={disabled}
         required={required}
-      />
+      >
+        {placeholder && (
+          <option
+            disabled
+            selected
+            hidden
+            className='opacity-50'
+          >
+            {placeholder}
+          </option>
+        )}
+        {options?.map(option => <option value={option}>{option}</option>)}
+      </select>
     </div>
   )
 }

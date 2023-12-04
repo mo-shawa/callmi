@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 h1 {
-  @apply text-4xl leading-tight tracking-tighter md:text-5xl md:leading-none;
+  @apply text-5xl font-semibold leading-tight tracking-tighter md:text-5xl md:leading-none;
 }
 
 p {

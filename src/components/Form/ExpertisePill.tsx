@@ -1,4 +1,4 @@
-import handleSelect from '@/app/onboarding/2/handlers'
+import handleSelect from '@/app/(onboarding)/onboarding/2/handlers'
 
 type Props<T extends Expertise | Industry> = {
   children: React.ReactNode
@@ -24,10 +24,10 @@ const SelectPill = <T extends Expertise | Industry>({
       }`}
     >
       <input
-        onChange={(e) => handleSelect<T>(e, data, selected, setSelected)}
-        type="checkbox"
+        onChange={e => handleSelect<T>(e, data, selected, setSelected)}
+        type='checkbox'
       />
-      <span className="font-medium">{children}</span>
+      <span className='font-medium'>{children}</span>
     </label>
   )
 }

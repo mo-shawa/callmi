@@ -18,20 +18,19 @@ const options: AuthOptions = {
 
       authorization: {
         params: {
-          // non sensitive and calendar scope and events scopes
           scope:
             'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
         },
       },
-      profile(profile) {
-        console.log('profile', profile)
-        return {
-          id: profile.id,
-          name: profile.name,
-          email: profile.email,
-          image: profile.picture,
-        }
-      },
+      // profile(profile) {
+      //   console.log('profile', profile)
+      //   return {
+      //     id: profile.id,
+      //     name: profile.name,
+      //     email: profile.email,
+      //     image: profile.picture,
+      //   }
+      // },
     }),
   ],
   pages: {
@@ -41,10 +40,10 @@ const options: AuthOptions = {
     async session({ session, user, newSession, token, trigger }) {
       console.log('session', { session, user, newSession, token, trigger })
 
-      const calendar = google.calendar({
-        version: 'v3',
-        auth: process.env.GOOGLE_CALENDAR_API_KEY,
-      })
+      // const calendar = google.calendar({
+      //   version: 'v3',
+      //   auth: process.env.GOOGLE_CALENDAR_API_KEY,
+      // })
 
       // @ts-ignore
       session.user = user
