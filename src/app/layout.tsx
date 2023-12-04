@@ -21,11 +21,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <Providers>
         <body
-          className={` flex min-h-screen flex-col text-black  ${inter.className}`}
-        >
+          className={` flex min-h-screen flex-col text-black  ${inter.className}`}>
           <Navbar />
           {children}
           {/* <Footer /> */}

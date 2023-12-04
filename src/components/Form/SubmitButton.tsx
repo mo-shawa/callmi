@@ -13,13 +13,12 @@ export function SubmitButton({ children }: Props = { children: 'Submit' }) {
   return (
     <motion.button
       variants={variants}
-      whileHover="hover"
-      whileTap="tap"
-      className="w-full max-w-sm rounded-3xl border bg-primary py-4 text-white"
-      type="submit"
-      aria-disabled={pending}
-    >
-      {pending ? <span className="loading loading-spinner" /> : children}
+      whileHover='hover'
+      whileTap='tap'
+      className='w-full max-w-sm rounded-3xl border bg-primary py-4 text-white'
+      type='submit'
+      aria-disabled={pending}>
+      {pending ? <span className='loading loading-spinner' /> : children}
     </motion.button>
   )
 }

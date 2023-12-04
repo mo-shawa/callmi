@@ -1,7 +1,6 @@
 'use client'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import { SubmitButton } from '@/components/Form/SubmitButton'
 import SelectPill from '@/components/Form/ExpertisePill'
 import { useState } from 'react'
 import { expertiseData, industryData } from '@/data/general'
@@ -10,9 +9,12 @@ import { PrimaryButton } from '@/components/Button/PrimaryButton'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import useToast from '@/hooks/useToast'
 import { useRouter } from 'next/navigation'
+import { convertEnumToText } from '@/utils/prisma'
+import handleSelect from './handlers'
 
 export default function OnboardingStep2() {
-  const { status } = useSession()
+  const { data: session, status } = useSession()
+  console.log({ session })
   const { push } = useRouter()
   const { element: toast, show } = useToast({
     icon: <ExclamationTriangleIcon className="h-6 w-6 text-yellow-900" />,
@@ -20,7 +22,9 @@ export default function OnboardingStep2() {
     className: 'bg-yellow-100 border-yellow-500 text-yellow-800',
   })
 
-  const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>([])
+  const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
+    session?.user.expertise.map((e) => convertEnumToText(e)) as Expertise[]
+  )
 
   function handleSelectExpertise(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -37,7 +41,9 @@ export default function OnboardingStep2() {
     }
   }
 
-  const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>([])
+  const [selectedIndustries, setSelectedIndustries] = useState<Industry[]>(
+    session?.user.industry.map((e) => convertEnumToText(e)) as Industry[]
+  )
 
   function handleSelectIndustry(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -54,12 +60,29 @@ export default function OnboardingStep2() {
     }
   }
 
-  const handleSubmit = (/*e: React.FormEvent<HTMLFormElement>*/) => {
+  const handleSubmit = async (/*e: React.FormEvent<HTMLFormElement>*/) => {
     // e.preventDefault()
     if (selectedExpertises.length === 0 || selectedIndustries.length === 0) {
       return show()
     }
     console.log({ selectedExpertises, selectedIndustries })
+
+    const res = await fetch(`/api/onboarding/${session?.user.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        expertise: selectedExpertises,
+        industry: selectedIndustries,
+      }),
+    })
+
+    if (!res.ok) {
+      console.error(res)
+      return
+    }
+
     push('/onboarding/3')
   }
   if (status === 'unauthenticated') return redirect('/api/auth/signin')
@@ -78,8 +101,9 @@ export default function OnboardingStep2() {
               <SelectPill
                 key={expertise}
                 isSelected={selectedExpertises.includes(expertise)}
+                selected={selectedExpertises}
+                setSelected={setSelectedExpertises}
                 data={expertise}
-                onChange={handleSelectExpertise}
               >
                 {expertise}
               </SelectPill>
@@ -92,7 +116,8 @@ export default function OnboardingStep2() {
               <SelectPill
                 key={industry}
                 isSelected={selectedIndustries.includes(industry)}
-                onChange={handleSelectIndustry}
+                selected={selectedIndustries}
+                setSelected={setSelectedIndustries}
                 data={industry}
               >
                 {industry}

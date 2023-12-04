@@ -7,13 +7,6 @@ type AvailabilityProps = {
   dayOfWeek: string
 }
 
-type Time = {
-  // hour is 1-12
-  hour: number
-  minute: 0 | 15 | 30 | 45
-  ampm: 'am' | 'pm'
-}
-
 export default function Availability({ dayOfWeek }: AvailabilityProps) {
   dayOfWeek = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1)
   const [isAvailable, setIsAvailable] = useState(false)
@@ -43,13 +36,16 @@ export default function Availability({ dayOfWeek }: AvailabilityProps) {
         }))
         break
       case 'ampm':
-        setTime((prev) => ({ ...prev, ampm: e.target.value as 'am' | 'pm' }))
+        setTime((prev) => ({
+          ...prev,
+          ampm: e.target.value as 'am' | 'pm',
+        }))
         break
     }
   }
 
   return (
-    <motion.div layout layoutRoot className="px-4 py-2">
+    <div className="px-4 py-2">
       <div className="flex items-center gap-4">
         <input
           type="checkbox"
@@ -76,7 +72,7 @@ export default function Availability({ dayOfWeek }: AvailabilityProps) {
           />
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
 

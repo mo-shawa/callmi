@@ -20,9 +20,11 @@ export default function Input({
   required,
 }: Props) {
   return (
-    <div className="form-control w-full max-w-sm">
-      <label className="label" htmlFor={name}>
-        <span className="label-text">{label}</span>
+    <div className='form-control w-full max-w-sm'>
+      <label
+        className='label'
+        htmlFor={name}>
+        <span className='label-text'>{label}</span>
       </label>
       <input
         type={type}
@@ -30,7 +32,7 @@ export default function Input({
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className="input input-bordered"
+        className='input input-bordered'
         defaultValue={value}
         disabled={disabled}
         required={required}

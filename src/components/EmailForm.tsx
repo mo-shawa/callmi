@@ -26,45 +26,51 @@ export default function EmailForm() {
       <div>
         <motion.div
           variants={logoVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center justify-center gap-4"
-        >
-          <Image src="/svg/logo.svg" alt="logo" height={96} width={96} />
+          initial='hidden'
+          animate='visible'
+          className='flex flex-col items-center justify-center gap-4'>
+          <Image
+            src='/svg/logo.svg'
+            alt='logo'
+            height={96}
+            width={96}
+          />
         </motion.div>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center text-lg font-light"
-        >
+          className='text-center text-lg font-light'>
           Thanks for signing up!
         </motion.p>
       </div>
     )
 
   return (
-    <motion.div layout className="max-w-min">
+    <motion.div
+      layout
+      className='max-w-min'>
       <motion.form
         layout
         variants={formVariants}
-        initial="hidden"
-        animate="visible"
-        className="flex flex-col justify-center gap-2"
-        action={clientAction}
-      >
-        <label htmlFor="email">Email</label>
+        initial='hidden'
+        animate='visible'
+        className='flex flex-col justify-center gap-2'
+        action={clientAction}>
+        <label htmlFor='email'>Email</label>
         <input
-          className="rounded-3xl border border-dark p-4"
-          type="email"
-          name="email"
-          placeholder="your@email.com"
+          className='rounded-3xl border border-dark p-4'
+          type='email'
+          name='email'
+          placeholder='your@email.com'
           required
         />
         <SubmitButton>Sign up</SubmitButton>
       </motion.form>
       {error && (
-        <motion.small {...getFadeInProps()} className=" text-red-500">
+        <motion.small
+          {...getFadeInProps()}
+          className=' text-red-500'>
           {error}
         </motion.small>
       )}

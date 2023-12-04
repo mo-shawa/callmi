@@ -5,27 +5,9 @@ import { SubmitButton } from '@/components/Form/SubmitButton'
 import Image from 'next/image'
 import Textarea from '@/components/Form/Textarea'
 import { PrimaryButton } from '@/components/Button/PrimaryButton'
-import prisma from '@/utils/prisma'
-async function formAction(data: FormData) {
-  'use server'
-  // Validate data
-  const bio = data.get('bio')
-  const id = data.get('userId')
-
-  if (!bio || !id) return redirect('/onboarding/3')
-
-  const session = await getServerSession(options)
-  // Update user
-  if (bio !== session?.user?.bio) {
-    await prisma.user.update({
-      where: { id: id.toString() },
-      data: { bio: bio.toString() },
-    })
-  }
-
-  // Redirect to next step
-  redirect('/onboarding/4')
-}
+import Availability from '@/components/Form/Availability'
+import { daysOfWeek } from '@/data/general'
+import { formAction } from './page'
 
 export default async function OnboardingStep3() {
   const session = await getServerSession(options)
@@ -44,9 +26,18 @@ export default async function OnboardingStep3() {
             name="bio"
             placeholder="I am a software engineer with 10+ years of experience, currently working at Google. I am an expert in React and TypeScript."
             required
-            defaultValue={session?.user?.bio!}
           />
-          <input type="hidden" name="userId" value={session.user.id} />
+          <h1>When are you available?</h1>
+          <small className="-mt-6 text-gray-500">1+ days per week</small>
+          <div className="flex flex-col gap-4">
+            {daysOfWeek.map((day) => (
+              <Availability key={day} dayOfWeek={day} />
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <PrimaryButton href="/onboarding/2">Previous</PrimaryButton>
+            <SubmitButton>Next</SubmitButton>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             <PrimaryButton href="/onboarding/2">Previous</PrimaryButton>
             <SubmitButton>Next</SubmitButton>

@@ -18,7 +18,7 @@ export default function useToast({ icon, message, className }: Props) {
 
   return {
     element: show && (
-      <div className="toast">
+      <div className='toast'>
         <div className={`alert flex gap-2 ${className}`}>
           {icon}
           <span>{message}</span>

@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String      @id @default(cuid())
+  name          String?
+  email         String?     @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  onboarded     Boolean?    @default(false)
+  username      String?     @unique
+  timezone      String?
+  expertise     Expertise[]
+  industry      Industry[]
+  bio           String?
+  costPerHour   Int?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Expertise {
+  B2B_Sales
+  B2C_Sales
+  Bootstrapping
+  Branding
+  Financial_Planning
+  Fundraising
+  Growth_Marketing
+  Manufacturing
+  People_And_Hiring
+  Product_And_Engineering
+  Product_Marketing
+  Public_Relations
+  SEM_And_SEO
+  Social_Media
+  Strategy_And_Operations
+  Coaching
+}
+
+enum Industry {
+  Artificial_Intelligence
+  B2B_Services
+  B2B_Software
+  Consumer_Hardware
+  Consumer_Software
+  Ecommerce_And_CPG
+  Education
+  Fashion_And_Apparel
+  Fintech
+  Food_And_Beverage
+  Gaming
+  Healthcare
+  Insurance
+  Media_And_Entertainment
+  Real_Estate
+  Venture_Capital
+  Career_Expert
+}

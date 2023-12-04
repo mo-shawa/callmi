@@ -8,9 +8,11 @@ type Props = {
 }
 
 const sizes = {
-  sm: 'w-10 h-10',
-  md: 'w-16 h-16',
-  lg: 'w-24 h-24',
+  sm: { className: 'w-10 h-10', size: 48 },
+  md: { className: 'w-16 h-16', size: 64 },
+  lg: { className: 'w-24 h-24', size: 96 },
+  // md: 'w-16 h-16',
+  // lg: 'w-24 h-24',
 }
 
 const textSizes = {
@@ -21,23 +23,22 @@ const textSizes = {
 
 export default function Avatar({ src, name, size = 'md' }: Props) {
   return (
-    <div className="w-24">
+    <div className='w-24'>
       {src ? (
         <Image
           src={src}
-          alt="profile picture"
-          width={100}
-          height={100}
-          className="rounded-full"
+          alt='profile picture'
+          width={sizes[size].size}
+          height={sizes[size].size}
+          className='avatar rounded-full ring ring-primary'
         />
       ) : (
-        <div className="avatar placeholder online">
+        <div className='avatar placeholder online ring ring-primary'>
           <div
             className={cn(
               'rounded-full bg-neutral text-neutral-content',
-              sizes[size]
-            )}
-          >
+              sizes[size].className
+            )}>
             <span className={textSizes[size]}>
               {name?.at(0)?.toUpperCase()}
             </span>

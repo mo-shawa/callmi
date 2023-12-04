@@ -1,11 +1,20 @@
-type Props = {
-  children: React.ReactNode
-  onChange: (e: React.ChangeEvent<HTMLInputElement>, data: any) => void
-  data: any
-  isSelected: boolean
-} // I give up on this one
+import handleSelect from '@/app/onboarding/2/handlers'
 
-const SelectPill = ({ children, onChange, data, isSelected }: Props) => {
+type Props<T extends Expertise | Industry> = {
+  children: React.ReactNode
+  data: T
+  isSelected: boolean
+  selected: T[]
+  setSelected: React.Dispatch<React.SetStateAction<T[]>>
+}
+
+const SelectPill = <T extends Expertise | Industry>({
+  children,
+  data,
+  isSelected,
+  selected,
+  setSelected,
+}: Props<T>) => {
   return (
     <label
       className={`select-pill inline-flex cursor-pointer select-none items-center rounded-full  border p-4 ${
@@ -14,7 +23,10 @@ const SelectPill = ({ children, onChange, data, isSelected }: Props) => {
           : 'bg-gray-200'
       }`}
     >
-      <input onChange={(e) => onChange(e, data)} type="checkbox" />
+      <input
+        onChange={(e) => handleSelect<T>(e, data, selected, setSelected)}
+        type="checkbox"
+      />
       <span className="font-medium">{children}</span>
     </label>
   )

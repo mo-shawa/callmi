@@ -19,15 +19,14 @@ export function PrimaryButton({ className, children, href, onClick }: Props) {
     <Wrapper>
       <motion.button
         variants={variants}
-        whileHover="hover"
-        whileTap="tap"
+        whileHover='hover'
+        whileTap='tap'
         className={cn(
           'w-full max-w-sm rounded-3xl border bg-primary py-4 text-white',
           className
         )}
-        type="button"
-        {...(onClick ? { onClick: onClick } : {})}
-      >
+        type='button'
+        {...(onClick ? { onClick: onClick } : {})}>
         {children}
       </motion.button>
     </Wrapper>
