@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation'
-
 export default function handleSelect<T extends Expertise | Industry>(
   e: React.ChangeEvent<HTMLInputElement>,
   data: T,
@@ -25,6 +23,8 @@ type HandleSubmitProps = {
   selectedIndustries: Industry[]
   showToast: () => void
   userId: string
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  push: (path: string) => void
 }
 
 export const handleSubmit = async ({
@@ -32,8 +32,12 @@ export const handleSubmit = async ({
   selectedIndustries,
   showToast,
   userId,
+  setLoading,
+  push,
 }: HandleSubmitProps) => {
+  setLoading(true)
   if (selectedExpertises.length === 0 || selectedIndustries.length === 0) {
+    setLoading(false)
     return showToast()
   }
   console.log({ selectedExpertises, selectedIndustries })
@@ -51,8 +55,8 @@ export const handleSubmit = async ({
 
   if (!res.ok) {
     console.error(res)
+    setLoading(false)
     return
   }
-
-  redirect('/onboarding/3')
+  push('/onboarding/3')
 }

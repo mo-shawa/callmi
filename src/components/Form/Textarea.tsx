@@ -1,3 +1,5 @@
+import { Textarea } from '../ui/textarea'
+
 type Props = {
   name: string
   label: string
@@ -6,9 +8,10 @@ type Props = {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   disabled?: boolean
   required?: boolean
+  labelAlt?: string
 }
 
-export default function Textarea({
+export default function TextareaWithLabel({
   name,
   label,
   placeholder,
@@ -16,23 +19,33 @@ export default function Textarea({
   onChange,
   disabled,
   required,
+  labelAlt,
 }: Props) {
   return (
-    <div className="form-control w-full">
-      <label className="label" htmlFor={name}>
-        <span className="label-text">{label}</span>
+    <div className='form-control w-full'>
+      <label
+        className='label'
+        htmlFor={name}
+      >
+        <span className='label-text font-medium'>{label}</span>
       </label>
-      <textarea
+      <Textarea
         name={name}
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className="textarea textarea-bordered min-h-[25rem]"
+        className='textarea textarea-bordered min-h-[15rem] resize-none rounded-xl'
         minLength={20}
         defaultValue={defaultValue}
         disabled={disabled}
         required={required}
       />
+      <label
+        className='label'
+        htmlFor={name}
+      >
+        <span className='label-text font-light text-gray-500'>{labelAlt}</span>
+      </label>
     </div>
   )
 }

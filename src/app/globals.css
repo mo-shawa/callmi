@@ -20,3 +20,11 @@ p {
 .select-pill input[type='checkbox'] {
   display: none;
 }
+
+h1.onboarding {
+  @apply text-4xl font-semibold;
+}
+
+p.onboarding-step {
+  @apply text-sm font-medium tracking-wider text-gray-500;
+}

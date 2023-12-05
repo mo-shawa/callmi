@@ -12,15 +12,13 @@ export default async function OnboardingStep1() {
   const session = await getServerSession(options)
   if (!session) redirect('/auth/signin')
 
-  console.log({ session })
-
   return (
     <OnboardingSkeleton step={1}>
-      <small className='tracking-wider text-gray-600'>Step 1/4</small>
-      <h1 className='font-medium'>Welcome To Callmi</h1>
+      <p className='onboarding-step'>Step 1/5</p>
+      <h1 className='onboarding'>Welcome To Callmi</h1>
       <form
         action={formAction}
-        className='flex flex-col gap-8'
+        className='flex flex-col gap-4'
       >
         <Input
           label='Name'

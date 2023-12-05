@@ -26,10 +26,10 @@ export default async function OnboardingSkeleton({ children, step }: Props) {
           <Image
             src='/svg/logo.svg'
             alt='Callmi logo'
-            width='64'
-            height='64'
+            width='80'
+            height='80'
           />
-          <h1 className='text-3xl '>Callmi</h1>
+          <h1 className='text-4xl '>Callmi</h1>
           <div
             className={cn(
               'absolute bottom-0 left-0 h-1 rounded-r bg-primary',
@@ -37,7 +37,7 @@ export default async function OnboardingSkeleton({ children, step }: Props) {
             )}
           ></div>
         </div>
-        <div className='mx-auto flex w-full max-w-xl flex-col gap-8 px-4 pt-12'>
+        <div className='mx-auto flex w-full max-w-xl flex-col gap-8 px-4 py-16'>
           {children}
         </div>
       </div>

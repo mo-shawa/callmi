@@ -2,18 +2,15 @@
 
 import { cn } from '@/utils/utils'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Wrapper } from '../Form/WrapIfHref'
 
 type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string
 }
 
 export function PrimaryButton({ className, children, href, onClick }: Props) {
-  const Wrapper = ({ children }: Props) =>
-    href ? <Link href={href}>{children}</Link> : <>{children}</>
-
   return (
-    <Wrapper>
+    <Wrapper href={href}>
       <motion.button
         variants={variants}
         whileHover='hover'

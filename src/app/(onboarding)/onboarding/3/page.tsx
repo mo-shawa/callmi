@@ -2,70 +2,51 @@ import options from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from '@/components/Form/SubmitButton'
-import Image from 'next/image'
-import Textarea from '@/components/Form/Textarea'
-import { PrimaryButton } from '@/components/Button/PrimaryButton'
-import prisma from '@/utils/prisma'
-async function formAction(data: FormData) {
-  'use server'
-  // Validate data
-  const bio = data.get('bio')
-  const id = data.get('userId')
-
-  if (!bio || !id) return redirect('/onboarding/3')
-
-  const session = await getServerSession(options)
-  // Update user
-  if (bio !== session?.user?.bio) {
-    await prisma.user.update({
-      where: { id: id.toString() },
-      data: { bio: bio.toString() },
-    })
-  }
-
-  // Redirect to next step
-  redirect('/onboarding/4')
-}
+import OnboardingSkeleton from '../../OnboardingSkeleton'
+import BackButton from '@/components/Form/BackButton'
+import InputWithLabel from '@/components/Form/InputWithLabel'
+import TextareaWithLabel from '@/components/Form/Textarea'
+import formAction from './action'
 
 export default async function OnboardingStep3() {
   const session = await getServerSession(options)
   if (!session) return redirect('/api/auth/signin')
   return (
-    <main className="grid w-full flex-1 grid-cols-1 bg-stone-50 pt-28 sm:grid-cols-2 sm:pt-20 ">
-      <div id="left" className="col-span-1 p-16">
-        <small className="tracking-wider text-gray-500">Step 3/5</small>
-        <h1>Almost there..</h1>
-        <form
-          action={formAction}
-          className="mt-8 flex flex-col justify-center gap-8"
-        >
-          <Textarea
-            label="Bio"
-            name="bio"
-            placeholder="I am a software engineer with 10+ years of experience, currently working at Google. I am an expert in React and TypeScript."
-            required
-            defaultValue={session?.user?.bio!}
-          />
-          <input type="hidden" name="userId" value={session.user.id} />
-          <div className="grid grid-cols-2 gap-4">
-            <PrimaryButton href="/onboarding/2">Previous</PrimaryButton>
-            <SubmitButton>Next</SubmitButton>
-          </div>
-        </form>
-      </div>
-      <div
-        id="right"
-        className="relative col-span-1 hidden bg-primary sm:block"
+    <OnboardingSkeleton step={3}>
+      <BackButton href='/onboarding/2'>Back</BackButton>
+      <p className='onboarding-step'>Step 3/5</p>
+      <h1 className='onboarding'>Next up...</h1>
+      <form
+        action={formAction}
+        className='flex flex-col justify-center gap-8'
       >
-        <Image
-          src="/onboarding/3.jpg"
-          alt="Onboarding image 1"
-          className="sticky left-0 top-20 h-full max-h-screen w-full object-cover"
-          width="1024"
-          height="1024"
-          priority
+        <InputWithLabel
+          label='What are your fees per hour?'
+          name='costPerHour'
+          type='number'
+          placeholder='Enter your rate here'
+          required
+          value={session?.user?.costPerHour!}
+          isCurrency={true}
+          min={1}
+          step={1}
+          pattern='[0-9]+'
         />
-      </div>
-    </main>
+        <TextareaWithLabel
+          label='Customize your bio'
+          name='bio'
+          placeholder='e.g.: Founded three B2B SaaS businesses, hit 20% MoM growth, and exited at series C.'
+          required
+          defaultValue={session?.user?.bio!}
+          labelAlt='Add a personal touch by talking about your skills. Feel free to show off!'
+        />
+        <input
+          type='hidden'
+          name='userId'
+          value={session.user.id}
+        />
+        <SubmitButton>Continue</SubmitButton>
+      </form>
+    </OnboardingSkeleton>
   )
 }

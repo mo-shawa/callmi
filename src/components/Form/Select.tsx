@@ -25,7 +25,7 @@ export default function Select({
         className='label'
         htmlFor={name}
       >
-        <span className='label-text'>{label}</span>
+        <span className='label-text font-medium'>{label}</span>
       </label>
       <select
         name={name}

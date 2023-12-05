@@ -1,14 +1,9 @@
 import { Input } from '../ui/input'
 
-type Props = {
-  name: string
+type Props = React.InputHTMLAttributes<'number' | 'string'> & {
   label: string
-  type: string
-  placeholder?: string
-  value?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  disabled?: boolean
-  required?: boolean
+  isCurrency?: boolean
 }
 
 export default function InputWithLabel({
@@ -20,15 +15,18 @@ export default function InputWithLabel({
   onChange,
   disabled,
   required,
+  isCurrency,
+  min,
 }: Props) {
   return (
-    <div className='form-control w-full'>
+    <div className='form-control relative w-full'>
       <label
         className='label'
         htmlFor={name}
       >
-        <span className='label-text'>{label}</span>
+        <span className='label-text font-medium'>{label}</span>
       </label>
+
       <Input
         type={type}
         name={name}
@@ -38,6 +36,8 @@ export default function InputWithLabel({
         defaultValue={value}
         disabled={disabled}
         required={required}
+        isCurrency={isCurrency}
+        min={min}
       />
     </div>
   )

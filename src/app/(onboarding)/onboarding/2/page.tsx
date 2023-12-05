@@ -3,7 +3,6 @@ import { useSession } from 'next-auth/react'
 import SelectPill from '@/components/Form/SelectPill'
 import { useState } from 'react'
 import { expertiseData, industryData } from '@/data/general'
-import { PrimaryButton } from '@/components/Button/PrimaryButton'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import useToast from '@/hooks/useToast'
 import { useRouter } from 'next/navigation'
@@ -12,6 +11,7 @@ import Image from 'next/image'
 import ImageRight from '../../ImageRight'
 import BackButton from '@/components/Form/BackButton'
 import { handleSubmit } from './handlers'
+import { ClientSubmitButton } from '@/components/Form/ClientSubmitButton'
 
 export default function OnboardingStep2() {
   const { data: session, status } = useSession()
@@ -31,6 +31,8 @@ export default function OnboardingStep2() {
     (session?.user.industry.map(e => convertEnumToText(e)) as Industry[]) || []
   )
 
+  const [loading, setLoading] = useState(false)
+
   if (status === 'unauthenticated') return push('/api/auth/signin')
   return (
     <main className='grid w-full flex-1 grid-cols-1 bg-white md:grid-cols-2'>
@@ -42,22 +44,20 @@ export default function OnboardingStep2() {
           <Image
             src='/svg/logo.svg'
             alt='Callmi logo'
-            width='64'
-            height='64'
+            width='80'
+            height='80'
           />
-          <h1 className='text-3xl '>Callmi</h1>
+          <h1 className='text-4xl '>Callmi</h1>
           <div className='absolute bottom-0 left-0 h-1 w-2/5 rounded-r bg-primary'></div>
         </div>
-        <div className='mx-auto flex w-full max-w-xl flex-col gap-8 px-4 pt-12'>
+        <div className='mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-16'>
           <BackButton href='/onboarding/1'>Back</BackButton>
-          <small className='font-medium tracking-wider text-gray-500'>
-            Step 2/5
-          </small>
-          <h1>Expertise (up to 3):</h1>
+          <p className='onboarding-step'>Step 2/5</p>
+          <h1 className='onboarding'>Expertise (up to 3):</h1>
 
           <form
             // onSubmit={handleSubmit}
-            className='mt-8 flex flex-col justify-center gap-8'
+            className='flex flex-col justify-center gap-8'
           >
             <div className='flex flex-wrap gap-4'>
               {expertiseData.map(expertise => (
@@ -73,8 +73,8 @@ export default function OnboardingStep2() {
                 </SelectPill>
               ))}
             </div>
-            <h1>In which industries?</h1>
-            <small className='-mt-6 text-gray-500'>Select up to 2</small>
+            <h1 className='onboarding'>Industry (up to 2):</h1>
+
             <div className='flex flex-wrap gap-4'>
               {industryData.map(industry => (
                 <SelectPill
@@ -89,20 +89,21 @@ export default function OnboardingStep2() {
                 </SelectPill>
               ))}
             </div>
-            <div className='grid grid-cols-2 gap-4'>
-              <PrimaryButton
-                onClick={() =>
-                  handleSubmit({
-                    selectedExpertises,
-                    selectedIndustries,
-                    userId: session?.user.id!,
-                    showToast,
-                  })
-                }
-              >
-                Next
-              </PrimaryButton>
-            </div>
+            <ClientSubmitButton
+              loading={loading}
+              onClick={() =>
+                handleSubmit({
+                  selectedExpertises,
+                  selectedIndustries,
+                  userId: session?.user.id!,
+                  showToast,
+                  setLoading,
+                  push,
+                })
+              }
+            >
+              Continue
+            </ClientSubmitButton>
           </form>
 
           {toast}

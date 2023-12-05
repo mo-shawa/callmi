@@ -1,4 +1,5 @@
 import handleSelect from '@/app/(onboarding)/onboarding/2/handlers'
+import { cn } from '@/utils/utils'
 
 type Props<T extends Expertise | Industry> = {
   children: React.ReactNode
@@ -19,17 +20,18 @@ const SelectPill = <T extends Expertise | Industry>({
 }: Props<T>) => {
   return (
     <label
-      className={`select-pill inline-flex cursor-pointer select-none items-center rounded-full  border p-4 ${
+      className={cn(
+        'select-pill inline-flex cursor-pointer select-none items-center rounded-full border border-gray-300 px-3 py-1.5',
         isSelected
-          ? 'border-green-500 bg-green-200 text-green-800'
-          : 'bg-gray-200'
-      }`}
+          ? 'border-primary bg-red-100 text-gray-800'
+          : 'bg-white text-gray-700'
+      )}
     >
       <input
         onChange={e => handleSelect<T>(e, data, selected, setSelected, max)}
         type='checkbox'
       />
-      <span className='font-medium'>{children}</span>
+      <span>{children}</span>
     </label>
   )
 }

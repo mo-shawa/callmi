@@ -1,16 +1,13 @@
-import Link from 'next/link'
-
+import { Wrapper } from './WrapIfHref'
 type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string
 }
 
 export default function BackButton({ children, href, onClick }: Props) {
-  const Wrapper = ({ children }: Props) =>
-    href ? <Link href={href}>{children}</Link> : <>{children}</>
   return (
-    <Wrapper>
+    <Wrapper href={href}>
       <button
-        className='group flex items-center rounded-2xl border border-stone-300 py-2 pl-4 pr-5 text-sm font-medium text-stone-700 transition-colors hover:bg-stone-50 hover:text-stone-900 '
+        className='text-md group flex items-center justify-center rounded-2xl border  border-stone-300 py-3 pl-4 pr-5 font-medium text-stone-700 '
         type='button'
         onClick={onClick}
       >
@@ -28,7 +25,7 @@ export default function BackButton({ children, href, onClick }: Props) {
             d='M10 19l-7-7m0 0l7-7m-7 7h18'
           ></path>
         </svg>
-        {children}
+        <span className='leading-[0rem]'>{children}</span>
       </button>
     </Wrapper>
   )
