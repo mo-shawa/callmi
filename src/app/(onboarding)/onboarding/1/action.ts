@@ -1,7 +1,7 @@
+'use server'
 import { redirect } from 'next/navigation'
 
 export default async function formAction(data: FormData) {
-  'use server'
   const id = data.get('user-id')
   const name = data.get('name')
   const originalName = data.get('original-name')

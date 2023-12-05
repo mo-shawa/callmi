@@ -12,7 +12,7 @@ type User = {
   expertise: Expertise[]
   industry: Industry[]
   bio: string
-  title: string
+  position: string
   company?: string
   availability: {
     [key: DayOfWeek]: DayAvailability

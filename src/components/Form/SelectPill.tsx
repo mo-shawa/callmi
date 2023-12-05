@@ -6,6 +6,7 @@ type Props<T extends Expertise | Industry> = {
   isSelected: boolean
   selected: T[]
   setSelected: React.Dispatch<React.SetStateAction<T[]>>
+  max: number
 }
 
 const SelectPill = <T extends Expertise | Industry>({
@@ -14,6 +15,7 @@ const SelectPill = <T extends Expertise | Industry>({
   isSelected,
   selected,
   setSelected,
+  max,
 }: Props<T>) => {
   return (
     <label
@@ -24,7 +26,7 @@ const SelectPill = <T extends Expertise | Industry>({
       }`}
     >
       <input
-        onChange={e => handleSelect<T>(e, data, selected, setSelected)}
+        onChange={e => handleSelect<T>(e, data, selected, setSelected, max)}
         type='checkbox'
       />
       <span className='font-medium'>{children}</span>

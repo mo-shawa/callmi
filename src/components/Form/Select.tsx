@@ -33,21 +33,27 @@ export default function Select({
         placeholder={placeholder}
         onChange={onChange}
         className='select select-bordered rounded-xl'
-        defaultValue={value}
         disabled={disabled}
         required={required}
       >
-        {placeholder && (
+        {placeholder && !value && (
           <option
             disabled
             selected
             hidden
-            className='opacity-50'
+            className='text-gray-400'
           >
             {placeholder}
           </option>
         )}
-        {options?.map(option => <option value={option}>{option}</option>)}
+        {options?.map(option => (
+          <option
+            selected={value === option}
+            value={option}
+          >
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   )

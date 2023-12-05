@@ -4,11 +4,8 @@ import { cn } from '@/utils/utils'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-type Props = {
-  className?: string
-  children?: React.ReactNode
+type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string
-  onClick?: () => void
 }
 
 export function PrimaryButton({ className, children, href, onClick }: Props) {
@@ -26,7 +23,8 @@ export function PrimaryButton({ className, children, href, onClick }: Props) {
           className
         )}
         type='button'
-        {...(onClick ? { onClick: onClick } : {})}>
+        {...(onClick ? { onClick: onClick } : {})}
+      >
         {children}
       </motion.button>
     </Wrapper>
