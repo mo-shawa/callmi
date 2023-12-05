@@ -49,6 +49,8 @@ model User {
   onboarded     Boolean?    @default(false)
   username      String?     @unique
   timezone      String?
+  company       String?
+  position      String?
   expertise     Expertise[]
   industry      Industry[]
   bio           String?

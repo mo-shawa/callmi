@@ -1,31 +1,12 @@
 import options from '@/app/api/auth/[...nextauth]/options'
 import { getServerSession } from 'next-auth'
-import Input from '@/components/Form/Input'
+import Input from '@/components/Form/InputWithLabel'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from '@/components/Form/SubmitButton'
 import Image from 'next/image'
-import prisma from '@/utils/prisma'
+import { timeZones } from '@/data/general'
 import Select from '@/components/Form/Select'
-
-async function formAction(data: FormData) {
-  'use server'
-  const id = data.get('user-id')
-  const name = data.get('name')
-  const originalName = data.get('original-name')
-  // Validate data
-  if (!id || !name || !originalName) return redirect('/onboarding/1')
-
-  // Update user
-  if (name !== originalName) {
-    await prisma.user.update({
-      where: { id: id.toString() },
-      data: { name: name.toString() },
-    })
-  }
-
-  // Redirect to next step
-  redirect('/onboarding/2')
-}
+import ImageRight from '../ImageRight'
 
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)
@@ -82,40 +63,10 @@ export default async function OnboardingStep1() {
               required
             />
             <Select
-              label='Time Zone'
               name='timezone'
-              type='select'
+              label='Time Zone'
+              options={timeZones}
               required
-              placeholder='Select your time zone'
-              options={[
-                'UTC-12:00',
-                'UTC-11:00',
-                'UTC-10:00',
-                'UTC-09:00',
-                'UTC-08:00',
-                'UTC-07:00',
-                'UTC-06:00',
-                'UTC-05:00',
-                'UTC-04:00',
-                'UTC-03:00',
-                'UTC-02:00',
-                'UTC-01:00',
-                'UTC+00:00',
-                'UTC+01:00',
-                'UTC+02:00',
-                'UTC+03:00',
-                'UTC+04:00',
-                'UTC+05:00',
-                'UTC+06:00',
-                'UTC+07:00',
-                'UTC+08:00',
-                'UTC+09:00',
-                'UTC+10:00',
-                'UTC+11:00',
-                'UTC+12:00',
-                'UTC+13:00',
-                'UTC+14:00',
-              ]}
             />
             <input
               type='hidden'
@@ -132,23 +83,11 @@ export default async function OnboardingStep1() {
               name='user-id'
               value={session.user.id}
             />
-            <SubmitButton>Next</SubmitButton>
+            <SubmitButton>Continue</SubmitButton>
           </form>
         </div>
       </div>
-      <div
-        id='right'
-        className='relative col-span-1 hidden max-h-screen bg-primary md:block'
-      >
-        <Image
-          src='/onboarding/onboarding.jpg'
-          alt='Onboarding image 1'
-          className='sticky left-0 top-0 h-full max-h-screen w-full object-cover'
-          width='1024'
-          height='1024'
-          priority
-        />
-      </div>
+      <ImageRight />
     </main>
   )
 }

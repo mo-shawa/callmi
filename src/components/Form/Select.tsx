@@ -1,7 +1,6 @@
 type Props = {
   name: string
   label: string
-  type: string
   placeholder?: string
   value?: string
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
@@ -21,7 +20,7 @@ export default function Select({
   options,
 }: Props) {
   return (
-    <div className='form-control w-full'>
+    <div className='form-control w-full rounded-xl'>
       <label
         className='label'
         htmlFor={name}
@@ -33,7 +32,7 @@ export default function Select({
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className='select select-bordered'
+        className='select select-bordered rounded-xl'
         defaultValue={value}
         disabled={disabled}
         required={required}

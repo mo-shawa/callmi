@@ -1,3 +1,5 @@
+import { Input } from '../ui/input'
+
 type Props = {
   name: string
   label: string
@@ -9,7 +11,7 @@ type Props = {
   required?: boolean
 }
 
-export default function Input({
+export default function InputWithLabel({
   name,
   label,
   type,
@@ -27,13 +29,12 @@ export default function Input({
       >
         <span className='label-text'>{label}</span>
       </label>
-      <input
+      <Input
         type={type}
         name={name}
         id={name}
         placeholder={placeholder}
         onChange={onChange}
-        className='input input-bordered'
         defaultValue={value}
         disabled={disabled}
         required={required}
