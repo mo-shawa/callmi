@@ -1,13 +1,8 @@
 import { Textarea } from '../ui/textarea'
 
-type Props = {
-  name: string
+type Props = React.TextareaHTMLAttributes<'string'> & {
   label: string
-  placeholder?: string
-  defaultValue?: string
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  disabled?: boolean
-  required?: boolean
   labelAlt?: string
 }
 

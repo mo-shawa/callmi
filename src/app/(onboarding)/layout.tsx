@@ -5,6 +5,7 @@ import Providers from '../Providers'
 const dmSans = DM_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://callmi.co'),
   title: 'Callmi - Fast online appointment scheduling',
   description:
     'Callmi – Get Paid for Your Time, Every Time: Schedule, Charge, and Call in 30 seconds',

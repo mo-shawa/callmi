@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 import { getServerSession } from 'next-auth'
 import prisma, { convertTextToEnum } from '@/utils/prisma'
-import options from '../../auth/[...nextauth]/options'
+import options from '../../../auth/[...nextauth]/options'
 export async function PUT(
   req: NextRequest,
   { params }: { params: { userId: string } }
@@ -18,20 +18,18 @@ export async function PUT(
   }
   const body = await req.json()
 
-  const expertise = body.expertise.map((expertise: Expertise) =>
-    convertTextToEnum(expertise)
-  )
-  const industry = body.industry.map((industry: Industry) =>
-    convertTextToEnum(industry)
-  )
+  if (!body.costPerHour || !body.bio) {
+    return Response.json({ message: 'missing fields' })
+  }
+
+  body.costPerHour = +body.costPerHour
 
   const result = await prisma.user.update({
     where: {
       id: userId,
     },
     data: {
-      expertise,
-      industry,
+      ...body,
     },
   })
   console.log({ result })

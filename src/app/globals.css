@@ -22,7 +22,7 @@ p {
 }
 
 h1.onboarding {
-  @apply text-4xl font-semibold;
+  @apply text-2xl font-semibold md:text-4xl;
 }
 
 p.onboarding-step {

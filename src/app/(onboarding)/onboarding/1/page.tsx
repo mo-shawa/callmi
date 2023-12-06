@@ -10,7 +10,7 @@ import OnboardingSkeleton from '../../OnboardingSkeleton'
 
 export default async function OnboardingStep1() {
   const session = await getServerSession(options)
-  if (!session) redirect('/auth/signin')
+  if (!session) redirect('/api/auth/signin')
 
   return (
     <OnboardingSkeleton step={1}>
@@ -18,7 +18,7 @@ export default async function OnboardingStep1() {
       <h1 className='onboarding'>Welcome To Callmi</h1>
       <form
         action={formAction}
-        className='flex flex-col gap-4'
+        className='relative flex flex-col gap-4'
       >
         <Input
           label='Name'

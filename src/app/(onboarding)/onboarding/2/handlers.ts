@@ -42,7 +42,7 @@ export const handleSubmit = async ({
   }
   console.log({ selectedExpertises, selectedIndustries })
 
-  const res = await fetch(`/api/onboarding/${userId}`, {
+  const res = await fetch(`/api/onboarding/${userId}/2`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

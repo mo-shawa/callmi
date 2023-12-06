@@ -1,4 +1,5 @@
 'use server'
+import prisma from '@/utils/prisma'
 import { redirect } from 'next/navigation'
 
 export default async function formAction(data: FormData) {
