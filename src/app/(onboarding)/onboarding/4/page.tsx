@@ -1,4 +1,3 @@
-import { PrimaryButton } from '@/components/Button/PrimaryButton'
 import Availability from '@/components/Form/Availability'
 import { SubmitButton } from '@/components/Form/SubmitButton'
 import { daysOfWeek } from '@/data/general'
@@ -12,8 +11,11 @@ export default function Step4() {
       <BackButton href='/onboarding/3'>Back</BackButton>
       <p className='onboarding-step'>Step 4/5</p>
       <h1 className='onboarding'>When are you available?</h1>
-      <form className='flex flex-col justify-center gap-8'>
-        <div className='flex flex-col gap-4'>
+      <form
+        action={formAction}
+        className='flex flex-col justify-center gap-8'
+      >
+        <div className='flex flex-col gap-6'>
           {daysOfWeek.map(day => (
             <Availability
               key={day}
@@ -21,7 +23,7 @@ export default function Step4() {
             />
           ))}
         </div>
-        <SubmitButton>Next</SubmitButton>
+        <SubmitButton>Continue</SubmitButton>
       </form>
     </OnboardingSkeleton>
   )

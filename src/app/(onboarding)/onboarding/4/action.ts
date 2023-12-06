@@ -2,7 +2,6 @@
 
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import prisma from '@/utils/prisma'
 
 export const formAction = async (data: FormData) => {
   'use server'
@@ -10,7 +9,7 @@ export const formAction = async (data: FormData) => {
   const id = data.get('user-id')
   const availability = data.get('availability')
 
-  if (!id || !availability) return redirect('/onboarding/4')
+  // if (!id || !availability) return redirect('/onboarding/4')
 
   const session = await getServerSession()
 
@@ -18,14 +17,6 @@ export const formAction = async (data: FormData) => {
   const availabilityObj: Record<string, boolean> = {}
   // Update user
 
-  if (availability !== session?.user?.availability) {
-    // construct availability object
-    // await prisma.user.update({
-    //   where: { id: id.toString() },
-    //   data: { availability },
-    // })
-  }
-
   // Redirect to next step
-  redirect('/onboarding/5')
+  // redirect('/onboarding/5')
 }
