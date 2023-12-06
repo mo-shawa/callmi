@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { subscribe } from '@/actions'
+import { subscribe } from './action'
 import { SubmitButton } from '@/components/Form/SubmitButton'
 import { logoVariants, formVariants, getFadeInProps } from '@/utils/framer'
 
@@ -28,7 +28,8 @@ export default function EmailForm() {
           variants={logoVariants}
           initial='hidden'
           animate='visible'
-          className='flex flex-col items-center justify-center gap-4'>
+          className='flex flex-col items-center justify-center gap-4'
+        >
           <Image
             src='/svg/logo.svg'
             alt='logo'
@@ -40,7 +41,8 @@ export default function EmailForm() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className='text-center text-lg font-light'>
+          className='text-center text-lg font-light'
+        >
           Thanks for signing up!
         </motion.p>
       </div>
@@ -49,14 +51,16 @@ export default function EmailForm() {
   return (
     <motion.div
       layout
-      className='max-w-min'>
+      className='max-w-min'
+    >
       <motion.form
         layout
         variants={formVariants}
         initial='hidden'
         animate='visible'
         className='flex flex-col justify-center gap-2'
-        action={clientAction}>
+        action={clientAction}
+      >
         <label htmlFor='email'>Email</label>
         <input
           className='rounded-3xl border border-dark p-4'
@@ -70,7 +74,8 @@ export default function EmailForm() {
       {error && (
         <motion.small
           {...getFadeInProps()}
-          className=' text-red-500'>
+          className=' text-red-500'
+        >
           {error}
         </motion.small>
       )}

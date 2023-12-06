@@ -16,7 +16,7 @@ export function PrimaryButton({ className, children, href, onClick }: Props) {
         whileHover='hover'
         whileTap='tap'
         className={cn(
-          'w-full max-w-sm rounded-3xl border bg-primary py-4 text-white',
+          'bg-brand w-full max-w-sm rounded-3xl border py-4 text-white',
           className
         )}
         type='button'

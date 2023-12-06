@@ -5,6 +5,7 @@ import { cn } from '@/utils/utils'
 type Props = {
   children: React.ReactNode
   step: number
+  wide?: boolean
 }
 
 const stepWidthClasses: Record<number, string> = {
@@ -15,7 +16,11 @@ const stepWidthClasses: Record<number, string> = {
   5: 'w-full',
 }
 
-export default function OnboardingSkeleton({ children, step }: Props) {
+export default function OnboardingSkeleton({
+  children,
+  step,
+  wide = false,
+}: Props) {
   return (
     <main className='grid w-full flex-1 grid-cols-1 bg-white md:grid-cols-2'>
       <div
@@ -33,12 +38,17 @@ export default function OnboardingSkeleton({ children, step }: Props) {
           <h1 className='text-3xl md:text-4xl'>Callmi</h1>
           <div
             className={cn(
-              'absolute bottom-0 left-0 h-1 rounded-r bg-primary',
+              'bg-brand absolute bottom-0 left-0 h-1 rounded-r',
               stepWidthClasses[step]
             )}
           ></div>
         </div>
-        <div className='mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8 pb-24 md:gap-8 md:pb-8'>
+        <div
+          className={cn(
+            'mx-auto flex w-full flex-col gap-6 px-4 py-8 pb-24 md:gap-8 md:pb-8',
+            wide ? 'max-w-3xl' : 'max-w-xl'
+          )}
+        >
           {children}
         </div>
       </div>

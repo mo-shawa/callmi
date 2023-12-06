@@ -44,8 +44,8 @@ export default function OnboardingStep3() {
           onChange={e => setCostPerHour((e.currentTarget as any).value)}
         />
         {!!costPerHour && (
-          <div className='grid grid-cols-2 gap-4'>
-            <div className='col-span-1'>
+          <div className='flex gap-8'>
+            <div className='col-span-1 flex flex-col gap-3'>
               <p className='text-base'>Client pays</p>
               <h1 className='onboarding'>
                 {(costPerHour * 1.2).toLocaleString('en-us', {
@@ -54,22 +54,21 @@ export default function OnboardingStep3() {
                   maximumFractionDigits: 0,
                 })}
               </h1>
-              <p className='text-base text-gray-500'>
+              <p className='max-w-[10rem] text-base text-gray-400'>
                 Callmi charges the client a 20% fee
               </p>
             </div>
-            <div className='col-span-1'>
+            <div className='col-span-1 flex flex-col gap-3'>
               <p className='text-base'>You Get</p>
               <h1 className='onboarding'>
-                $
                 {costPerHour.toLocaleString('en-us', {
                   style: 'currency',
                   currency: 'USD',
                   maximumFractionDigits: 0,
                 })}
               </h1>
-              <p className='test-base text-gray-500'>
-                Callmi doesn't charge you anything!
+              <p className='max-w-[10rem] text-base text-gray-400'>
+                Callmi doesn't charge you a single penny!
               </p>
             </div>
           </div>

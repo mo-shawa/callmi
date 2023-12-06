@@ -30,15 +30,16 @@ export default function Avatar({ src, name, size = 'md' }: Props) {
           alt='profile picture'
           width={sizes[size].size}
           height={sizes[size].size}
-          className='avatar rounded-full ring ring-primary'
+          className='ring-brand avatar rounded-full ring'
         />
       ) : (
-        <div className='avatar placeholder online ring ring-primary'>
+        <div className='ring-brand avatar placeholder online ring'>
           <div
             className={cn(
               'rounded-full bg-neutral text-neutral-content',
               sizes[size].className
-            )}>
+            )}
+          >
             <span className={textSizes[size]}>
               {name?.at(0)?.toUpperCase()}
             </span>

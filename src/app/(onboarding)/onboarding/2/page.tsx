@@ -35,7 +35,10 @@ export default function OnboardingStep2() {
 
   if (status === 'unauthenticated') return push('/api/auth/signin')
   return (
-    <OnboardingSkeleton step={2}>
+    <OnboardingSkeleton
+      wide
+      step={2}
+    >
       <BackButton href='/onboarding/1'>Back</BackButton>
       <p className='onboarding-step'>Step 2/5</p>
       <h1 className='onboarding'>Expertise (up to 3):</h1>

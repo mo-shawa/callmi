@@ -23,7 +23,7 @@ const SelectPill = <T extends Expertise | Industry>({
       className={cn(
         'select-pill inline-flex cursor-pointer select-none items-center rounded-full border border-gray-300 px-3 py-1.5',
         isSelected
-          ? 'border-primary bg-red-100 text-gray-800'
+          ? 'border-brand bg-red-100 text-gray-800'
           : 'bg-white text-gray-700'
       )}
     >
