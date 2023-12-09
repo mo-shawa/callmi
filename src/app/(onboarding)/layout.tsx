@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { DM_Sans } from 'next/font/google'
 import '../globals.css'
 import Providers from '../Providers'
+import { Toaster } from '@/components/ui/toaster'
 const dmSans = DM_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({
         >
           {children}
           {/* <Footer /> */}
+          <Toaster />
         </body>
       </html>
     </Providers>

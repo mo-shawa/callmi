@@ -3,9 +3,9 @@ import prisma from '@/utils/prisma'
 import { redirect } from 'next/navigation'
 
 export default async function formAction(data: FormData) {
-  const id = data.get('user-id')
+  const id = data.get('userId')
   const name = data.get('name')
-  const originalName = data.get('original-name')
+  const originalName = data.get('originalName')
   const company = data.get('company')
   const position = data.get('position')
   const timezone = data.get('timezone')

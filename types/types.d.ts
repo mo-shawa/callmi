@@ -6,7 +6,9 @@ type User = {
   id?: string
   name: string
   email: string
+  image: string
   timezone: string
+  onboarded: boolean
   costPerHour: number
   username?: string
   expertise: Expertise[]
@@ -14,6 +16,8 @@ type User = {
   bio: string
   position: string
   company?: string
+  charityName?: string
+  charityUrl?: string
   availability: {
     [key: DayOfWeek]: DayAvailability
   }

@@ -6,9 +6,10 @@ import { ClientSubmitButton } from '@/components/Form/ClientSubmitButton'
 import OnboardingSkeleton from '../../OnboardingSkeleton'
 import BackButton from '@/components/Form/BackButton'
 import InputWithLabel from '@/components/Form/InputWithLabel'
-import TextareaWithLabel from '@/components/Form/Textarea'
+import TextareaWithLabel from '@/components/Form/TextareaWithLabel'
 import { handleSubmit } from './handlers'
 import { useEffect, useState } from 'react'
+import { formatCurrency } from '@/utils/utils'
 
 export default function OnboardingStep3() {
   const { data: session, status } = useSession({ required: true })
@@ -48,11 +49,7 @@ export default function OnboardingStep3() {
             <div className='col-span-1 flex flex-col gap-3'>
               <p className='text-base'>Client pays</p>
               <h1 className='onboarding'>
-                {(costPerHour * 1.2).toLocaleString('en-us', {
-                  style: 'currency',
-                  currency: 'USD',
-                  maximumFractionDigits: 0,
-                })}
+                {formatCurrency(costPerHour * 1.2)}
               </h1>
               <p className='max-w-[10rem] text-base text-gray-400'>
                 Callmi charges the client a 20% fee
@@ -60,13 +57,7 @@ export default function OnboardingStep3() {
             </div>
             <div className='col-span-1 flex flex-col gap-3'>
               <p className='text-base'>You Get</p>
-              <h1 className='onboarding'>
-                {costPerHour.toLocaleString('en-us', {
-                  style: 'currency',
-                  currency: 'USD',
-                  maximumFractionDigits: 0,
-                })}
-              </h1>
+              <h1 className='onboarding'>{formatCurrency(costPerHour)}</h1>
               <p className='max-w-[10rem] text-base text-gray-400'>
                 Callmi doesn't charge you a single penny!
               </p>

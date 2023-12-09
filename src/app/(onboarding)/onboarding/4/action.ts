@@ -18,5 +18,5 @@ export const formAction = async (data: FormData) => {
   // Update user
 
   // Redirect to next step
-  // redirect('/onboarding/5')
+  redirect('/onboarding/5')
 }

@@ -3,8 +3,7 @@ import { useSession } from 'next-auth/react'
 import SelectPill from '@/components/Form/SelectPill'
 import { useState } from 'react'
 import { expertiseData, industryData } from '@/data/general'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import useToast from '@/hooks/useToast'
+import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { convertEnumToText } from '@/utils/prisma'
 import BackButton from '@/components/Form/BackButton'
@@ -15,11 +14,7 @@ import OnboardingSkeleton from '../../OnboardingSkeleton'
 export default function OnboardingStep2() {
   const { data: session, status } = useSession()
   const { push } = useRouter()
-  const { element: toast, show: showToast } = useToast({
-    icon: <ExclamationTriangleIcon className='h-6 w-6 text-yellow-900' />,
-    message: 'Please select at least one of each',
-    className: 'bg-yellow-100 border-yellow-500 text-yellow-800',
-  })
+  const { toast } = useToast()
 
   const [selectedExpertises, setSelectedExpertises] = useState<Expertise[]>(
     (session?.user.expertise.map(el => convertEnumToText(el)) as Expertise[]) ||
@@ -80,22 +75,20 @@ export default function OnboardingStep2() {
 
         <ClientSubmitButton
           loading={loading}
-          onClick={() =>
+          onClick={() => {
             handleSubmit({
               selectedExpertises,
               selectedIndustries,
               userId: session?.user.id!,
-              showToast,
+              toast,
               setLoading,
               push,
             })
-          }
+          }}
         >
           Continue
         </ClientSubmitButton>
       </form>
-
-      {toast}
     </OnboardingSkeleton>
   )
 }

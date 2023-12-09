@@ -1,3 +1,4 @@
+import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 
 type Props = React.TextareaHTMLAttributes<'string'> & {
@@ -17,13 +18,8 @@ export default function TextareaWithLabel({
   labelAlt,
 }: Props) {
   return (
-    <div className='form-control w-full'>
-      <label
-        className='label'
-        htmlFor={name}
-      >
-        <span className='label-text font-medium'>{label}</span>
-      </label>
+    <div className='relative flex w-full flex-col gap-1'>
+      <Label htmlFor={name}>{label}</Label>
       <Textarea
         name={name}
         id={name}

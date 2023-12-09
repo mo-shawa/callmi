@@ -4,7 +4,7 @@ import Input from '@/components/Form/InputWithLabel'
 import { redirect } from 'next/navigation'
 import { SubmitButton } from '@/components/Form/SubmitButton'
 import { timeZones } from '@/data/general'
-import Select from '@/components/Form/Select'
+import Select from '@/components/Form/SelectWithLabel'
 import formAction from './action'
 import OnboardingSkeleton from '../../OnboardingSkeleton'
 
@@ -65,12 +65,12 @@ export default async function OnboardingStep1() {
         />
         <input
           type='hidden'
-          name='original-name'
+          name='originalName'
           value={session.user.name!}
         />
         <input
           type='hidden'
-          name='user-id'
+          name='userId'
           value={session.user.id}
         />
         <SubmitButton>Continue</SubmitButton>

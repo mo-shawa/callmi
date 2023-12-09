@@ -1,21 +1,23 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useFormStatus } from 'react-dom'
 import { Button } from '../ui/button'
 import { Loader2 } from 'lucide-react'
+import Link from 'next/link'
 
 type Props = {
   children?: React.ReactNode
+  hasSkip?: boolean
+  skipHref?: string
 }
 
-export function SubmitButton({ children }: Props = { children: 'Submit' }) {
+export function SubmitButton({ children, hasSkip, skipHref }: Props) {
   const { pending } = useFormStatus()
 
   return (
     <>
       <Button
-        className='hidden h-12 w-full rounded-xl md:block'
+        className='hidden w-full  md:block'
         type='submit'
         aria-disabled={pending}
         variant='default'
@@ -27,7 +29,7 @@ export function SubmitButton({ children }: Props = { children: 'Submit' }) {
         )}
       </Button>
       <Button
-        className='fixed bottom-6 left-1/2 mx-auto block h-12 w-full max-w-[92vw] -translate-x-1/2 rounded-xl md:hidden'
+        className='fixed bottom-6 left-1/2 mx-auto block w-full max-w-[92vw] -translate-x-1/2  md:hidden'
         type='submit'
         aria-disabled={pending}
       >
@@ -37,6 +39,17 @@ export function SubmitButton({ children }: Props = { children: 'Submit' }) {
           children
         )}
       </Button>
+      {hasSkip && (
+        <Link href={skipHref!}>
+          <Button
+            variant='link'
+            type='button'
+            className='w-full'
+          >
+            Skip
+          </Button>
+        </Link>
+      )}
     </>
   )
 }

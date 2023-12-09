@@ -1,5 +1,5 @@
 'use client'
-import EmailForm from '@/app/(root)/(waitlist)/EmailForm'
+import EmailForm from '@/app/(root)/waitlist/EmailForm'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 

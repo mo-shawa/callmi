@@ -1,4 +1,5 @@
 import { Input } from '../ui/input'
+import { Label } from '../ui/label'
 
 type Props = React.InputHTMLAttributes<'number' | 'string'> & {
   label: string
@@ -19,14 +20,8 @@ export default function InputWithLabel({
   min,
 }: Props) {
   return (
-    <div className='form-control relative w-full'>
-      <label
-        className='label'
-        htmlFor={name}
-      >
-        <span className='label-text font-medium'>{label}</span>
-      </label>
-
+    <div className='relative flex w-full flex-col gap-1'>
+      <Label htmlFor={name}>{label}</Label>
       <Input
         type={type}
         name={name}

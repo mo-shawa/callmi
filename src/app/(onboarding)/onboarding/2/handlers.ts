@@ -1,3 +1,5 @@
+import { Toast, ToastProps } from '@/components/ui/toast'
+
 export default function handleSelect<T extends Expertise | Industry>(
   e: React.ChangeEvent<HTMLInputElement>,
   data: T,
@@ -21,7 +23,7 @@ export default function handleSelect<T extends Expertise | Industry>(
 type HandleSubmitProps = {
   selectedExpertises: Expertise[]
   selectedIndustries: Industry[]
-  showToast: () => void
+  toast: (props: ToastProps) => any
   userId: string
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
   push: (path: string) => void
@@ -30,7 +32,7 @@ type HandleSubmitProps = {
 export const handleSubmit = async ({
   selectedExpertises,
   selectedIndustries,
-  showToast,
+  toast,
   userId,
   setLoading,
   push,
@@ -38,7 +40,14 @@ export const handleSubmit = async ({
   setLoading(true)
   if (selectedExpertises.length === 0 || selectedIndustries.length === 0) {
     setLoading(false)
-    return showToast()
+    toast({
+      variant: 'default',
+      title: 'Heads up!',
+
+      // @ts-ignore
+      description: 'You need select at least one expertise and one industry.',
+    })
+    return
   }
   console.log({ selectedExpertises, selectedIndustries })
 

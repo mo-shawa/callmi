@@ -5,7 +5,7 @@ import { formAction } from './action'
 import OnboardingSkeleton from '../../OnboardingSkeleton'
 import BackButton from '@/components/Form/BackButton'
 
-export default function Step4() {
+export default function OnboardingStep4() {
   return (
     <OnboardingSkeleton step={4}>
       <BackButton href='/onboarding/3'>Back</BackButton>

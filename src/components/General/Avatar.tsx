@@ -30,10 +30,10 @@ export default function Avatar({ src, name, size = 'md' }: Props) {
           alt='profile picture'
           width={sizes[size].size}
           height={sizes[size].size}
-          className='ring-brand avatar rounded-full ring'
+          className='avatar rounded-full'
         />
       ) : (
-        <div className='ring-brand avatar placeholder online ring'>
+        <div className='avatar placeholder online'>
           <div
             className={cn(
               'rounded-full bg-neutral text-neutral-content',

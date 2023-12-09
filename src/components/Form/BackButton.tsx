@@ -7,7 +7,7 @@ export default function BackButton({ children, href, onClick }: Props) {
   return (
     <Wrapper href={href}>
       <button
-        className='text-md group flex items-center justify-center rounded-2xl border  border-stone-300 py-3 pl-4 pr-5 font-medium text-stone-700 '
+        className='text-md group flex items-center justify-center rounded-2xl border  border-gray-300 py-3 pl-4 pr-5 font-medium text-gray-700 '
         type='button'
         onClick={onClick}
       >

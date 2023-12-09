@@ -54,6 +54,8 @@ model User {
   expertise     Expertise[]
   industry      Industry[]
   bio           String?
+  charityName   String?
+  charityUrl    String?
   costPerHour   Int?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
