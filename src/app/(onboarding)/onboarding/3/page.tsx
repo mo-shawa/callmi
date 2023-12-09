@@ -23,7 +23,7 @@ export default function OnboardingStep3() {
   useEffect(() => {
     setCostPerHour(session?.user?.costPerHour!)
     setBio(session?.user?.bio!)
-  }, [status])
+  }, [status, session?.user?.costPerHour, session?.user?.bio])
 
   return (
     <OnboardingSkeleton step={3}>
@@ -59,7 +59,7 @@ export default function OnboardingStep3() {
               <p className='text-base'>You Get</p>
               <h1 className='onboarding'>{formatCurrency(costPerHour)}</h1>
               <p className='max-w-[10rem] text-base text-gray-400'>
-                Callmi doesn't charge you a single penny!
+                Callmi doesn&apos;t charge you a single penny!
               </p>
             </div>
           </div>
