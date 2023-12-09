@@ -2,30 +2,24 @@
 
 import { cn } from '@/utils/utils'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Wrapper } from '../Form/WrapIfHref'
 
-type Props = {
-  className?: string
-  children?: React.ReactNode
+type Props = React.ComponentPropsWithoutRef<'button'> & {
   href?: string
-  onClick?: () => void
 }
 
 export function PrimaryButton({ className, children, href, onClick }: Props) {
-  const Wrapper = ({ children }: Props) =>
-    href ? <Link href={href}>{children}</Link> : <>{children}</>
-
   return (
-    <Wrapper>
+    <Wrapper href={href}>
       <motion.button
         variants={variants}
-        whileHover="hover"
-        whileTap="tap"
+        whileHover='hover'
+        whileTap='tap'
         className={cn(
-          'w-full max-w-sm rounded-3xl border bg-primary py-4 text-white',
+          'bg-brand w-full max-w-sm rounded-3xl border py-4 text-white',
           className
         )}
-        type="button"
+        type='button'
         {...(onClick ? { onClick: onClick } : {})}
       >
         {children}

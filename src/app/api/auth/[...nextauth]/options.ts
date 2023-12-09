@@ -1,16 +1,23 @@
 import GoogleProvider from 'next-auth/providers/google'
 import { AuthOptions } from 'next-auth'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import { PrismaClient } from '@prisma/client'
+import { google } from 'googleapis'
+
+const prisma = new PrismaClient()
 
 const options: AuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      profile(profile) {
-        return {
-          ...profile,
-          id: profile.sub,
-        }
+
+      authorization: {
+        params: {
+          scope:
+            'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
+        },
       },
     }),
   ],
@@ -18,22 +25,9 @@ const options: AuthOptions = {
     newUser: '/onboarding/1',
   },
   callbacks: {
-    async jwt({ token, user, trigger }) {
-      // console.log('JWT CALLBACK --- ', { token, user })
-      // console.log('TRIGGER --- ', trigger)
-      if (user) {
-        token.id = user.id
-      }
-      return token
-    },
-    async session({ session, token }) {
-      // console.log('SESSION CALLBACK --- ', { session, token })
-      if (session?.user) {
-        // @ts-ignore
-        session.user.id = token.sub
-      }
-
-      // this.redirect
+    async session({ session, user }) {
+      // @ts-ignore
+      session.user = user
       return session
     },
   },

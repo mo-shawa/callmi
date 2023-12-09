@@ -13,9 +13,8 @@ export default function CategoryPill({ category }: Props) {
       transition={{
         layout: { ease, duration: 1 },
       }}
-      className="flex h-12 select-none items-center justify-center rounded-3xl border-2 border-black bg-white px-4"
-    >
-      <div className="whitespace-nowrap text-lg font-semibold">{category}</div>
+      className='flex h-12 select-none items-center justify-center rounded-3xl border-2 border-black bg-white px-4'>
+      <div className='whitespace-nowrap text-lg font-semibold'>{category}</div>
     </motion.div>
   )
 }
