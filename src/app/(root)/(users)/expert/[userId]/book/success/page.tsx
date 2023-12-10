@@ -14,7 +14,7 @@ export default function BookingSuccess() {
             Your meeting has been scheduled with {profile.name}!
           </h1>
           <p className='text-gray-500'>
-            We've sent you an email with the details of your booking.
+            We&apos;ve sent you an email with the details of your booking.
           </p>
         </div>
       </div>
