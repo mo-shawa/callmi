@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { subscribe } from './action'
 import { SubmitButton } from '@/components/Form/SubmitButton'
 import { logoVariants, formVariants, getFadeInProps } from '@/utils/framer'
+import { WaitlistSubmitButton } from './WaitlistSubmitButton'
 
 export default function EmailForm() {
   const [submitted, setSubmitted] = useState(false)
@@ -23,7 +24,7 @@ export default function EmailForm() {
 
   if (submitted)
     return (
-      <div>
+      <div className='bg-white'>
         <motion.div
           variants={logoVariants}
           initial='hidden'
@@ -63,13 +64,13 @@ export default function EmailForm() {
       >
         <label htmlFor='email'>Email</label>
         <input
-          className='rounded-3xl border border-dark p-4'
+          className='rounded-3xl border p-4'
           type='email'
           name='email'
           placeholder='your@email.com'
           required
         />
-        <SubmitButton>Sign up</SubmitButton>
+        <WaitlistSubmitButton>Submit</WaitlistSubmitButton>
       </motion.form>
       {error && (
         <motion.small

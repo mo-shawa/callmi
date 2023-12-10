@@ -8,8 +8,10 @@ import FeatureCard from '@/components/Landing/FeatureCard'
 import PricingCard from '@/components/Landing/Pricing/PricingCard'
 import { categoryData, featuresData, faqData } from '@/data/landing'
 import FaqItem from '@/components/Landing/FAQ'
+import { redirect } from 'next/navigation'
 
 export default function LandingPage() {
+  redirect('/waitlist')
   // const { categories } = useShuffleCategories(categoryData)
   const categories = categoryData
 
