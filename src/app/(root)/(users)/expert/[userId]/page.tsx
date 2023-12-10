@@ -7,6 +7,7 @@ import Top from './Top'
 import HowItWorks from './HowItWorks'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { profile } from '@/data/general'
 
 export default function UserPage() {
   const { userId } = useParams()
@@ -67,62 +68,4 @@ function BookButton({ children, userId }: BookButtonProps) {
       </Button>
     </Link>
   )
-}
-
-/** remove once you're fetching data */
-const profile: User = {
-  name: 'Michael Candor',
-  username: 'johndoe',
-  email: 'john@doe.co',
-  timezone: 'Canada/EST',
-  image: 'https://i.pravatar.cc/240',
-  onboarded: true,
-  expertise: ['Product & Engineering', 'Coaching'],
-  industry: ['Artificial Intelligence', 'B2B Software'],
-  bio: `I am a software engineer with 10+ years of experience, currently working at Google. 
-  I have a passion for helping others and have been mentoring students for the past 5 years, many of whom have gone on to work at Google, Facebook, and other top tech companies.
-  Ask me anything about software engineering, career advice, and more!
-  
-  I am a software engineer with 10+ years of experience, currently working at Google. 
-  I have a passion for helping others and have been mentoring students for the past 5 years, many of whom have gone on to work at Google, Facebook, and other top tech companies.
-  Ask me anything about software engineering, career advice, and more!`,
-  position: 'Software Engineer',
-  company: 'Google',
-  charityName: 'Charity',
-  charityUrl: 'https://www.charity.com',
-  id: '123',
-  costPerHour: 100,
-  // time zones ??
-  // https://github.com/calcom/cal.com/blob/main/packages/types/Calendar.d.ts
-  availability: {
-    monday: {
-      available: true,
-      start: '9:00',
-      end: '17:00',
-    },
-    tuesday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    wednesday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    thursday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    friday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    saturday: {
-      start: '9:00',
-      end: '17:00',
-    },
-    sunday: {
-      start: '9:00',
-      end: '17:00',
-    },
-  },
 }
